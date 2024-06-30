@@ -1,0 +1,702 @@
+[
+    {
+        "sport": "Basketball",
+        "name": "Nikola Jokic",
+        "starTier": 5,
+        "offensiveStrength": 300,
+        "defensiveStrength": 300
+    },
+    {
+        "sport": "Basketball",
+        "name": "Luka Doncic",
+        "starTier": 5,
+        "offensiveStrength": 297,
+        "defensiveStrength": 271
+    },
+    {
+        "sport": "Basketball",
+        "name": "Giannis Antetokounmpo",
+        "starTier": 5,
+        "offensiveStrength": 291,
+        "defensiveStrength": 291
+    },
+    {
+        "sport": "Basketball",
+        "name": "Shai Gilgeous-Alexander",
+        "starTier": 5,
+        "offensiveStrength": 288,
+        "defensiveStrength": 285
+    },
+    {
+        "sport": "Basketball",
+        "name": "Anthony Davis",
+        "starTier": 5,
+        "offensiveStrength": 237,
+        "defensiveStrength": 268
+    },
+    {
+        "sport": "Basketball",
+        "name": "Tyrese Haliburton",
+        "starTier": 4,
+        "offensiveStrength": 294,
+        "defensiveStrength": 118
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jalen Brunson",
+        "starTier": 4,
+        "offensiveStrength": 285,
+        "defensiveStrength": 116
+    },
+    {
+        "sport": "Basketball",
+        "name": "LeBron James",
+        "starTier": 4,
+        "offensiveStrength": 280,
+        "defensiveStrength": 232
+    },
+    {
+        "sport": "Basketball",
+        "name": "Kawhi Leonard",
+        "starTier": 4,
+        "offensiveStrength": 271,
+        "defensiveStrength": 203
+    },
+    {
+        "sport": "Basketball",
+        "name": "Kyrie Irving",
+        "starTier": 4,
+        "offensiveStrength": 268,
+        "defensiveStrength": 172
+    },
+    {
+        "sport": "Basketball",
+        "name": "Donovan Mitchell",
+        "starTier": 4,
+        "offensiveStrength": 266,
+        "defensiveStrength": 243
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jayson Tatum",
+        "starTier": 4,
+        "offensiveStrength": 263,
+        "defensiveStrength": 201
+    },
+    {
+        "sport": "Basketball",
+        "name": "Domantas Sabonis",
+        "starTier": 4,
+        "offensiveStrength": 254,
+        "defensiveStrength": 288
+    },
+    {
+        "sport": "Basketball",
+        "name": "Devin Booker",
+        "starTier": 4,
+        "offensiveStrength": 251,
+        "defensiveStrength": 68
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jimmy Butler",
+        "starTier": 4,
+        "offensiveStrength": 246,
+        "defensiveStrength": 209
+    },
+    {
+        "sport": "Basketball",
+        "name": "Kristaps Porzingis",
+        "starTier": 4,
+        "offensiveStrength": 234,
+        "defensiveStrength": 257
+    },
+    {
+        "sport": "Basketball",
+        "name": "Zion Williamson",
+        "starTier": 4,
+        "offensiveStrength": 229,
+        "defensiveStrength": 198
+    },
+    {
+        "sport": "Basketball",
+        "name": "Alperen Sengun",
+        "starTier": 4,
+        "offensiveStrength": 223,
+        "defensiveStrength": 266
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jarrett Allen",
+        "starTier": 4,
+        "offensiveStrength": 181,
+        "defensiveStrength": 226
+    },
+    {
+        "sport": "Basketball",
+        "name": "Victor Wembanyama",
+        "starTier": 4,
+        "offensiveStrength": 167,
+        "defensiveStrength": 297
+    },
+    {
+        "sport": "Basketball",
+        "name": "Stephen Curry",
+        "starTier": 3,
+        "offensiveStrength": 283,
+        "defensiveStrength": 56
+    },
+    {
+        "sport": "Basketball",
+        "name": "Lauri Markkanen",
+        "starTier": 3,
+        "offensiveStrength": 277,
+        "defensiveStrength": 39
+    },
+    {
+        "sport": "Basketball",
+        "name": "Trae Young",
+        "starTier": 3,
+        "offensiveStrength": 274,
+        "defensiveStrength": 22
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jamal Murray",
+        "starTier": 3,
+        "offensiveStrength": 260,
+        "defensiveStrength": 113
+    },
+    {
+        "sport": "Basketball",
+        "name": "Tyrese Maxey",
+        "starTier": 3,
+        "offensiveStrength": 257,
+        "defensiveStrength": 70
+    },
+    {
+        "sport": "Basketball",
+        "name": "Kevin Durant",
+        "starTier": 3,
+        "offensiveStrength": 249,
+        "defensiveStrength": 169
+    },
+    {
+        "sport": "Basketball",
+        "name": "Collin Sexton",
+        "starTier": 3,
+        "offensiveStrength": 243,
+        "defensiveStrength": 28
+    },
+    {
+        "sport": "Basketball",
+        "name": "Damian Lillard",
+        "starTier": 3,
+        "offensiveStrength": 232,
+        "defensiveStrength": 48
+    },
+    {
+        "sport": "Basketball",
+        "name": "Scottie Barnes",
+        "starTier": 3,
+        "offensiveStrength": 220,
+        "defensiveStrength": 220
+    },
+    {
+        "sport": "Basketball",
+        "name": "Anthony Edwards",
+        "starTier": 3,
+        "offensiveStrength": 215,
+        "defensiveStrength": 195
+    },
+    {
+        "sport": "Basketball",
+        "name": "De'Aaron Fox",
+        "starTier": 3,
+        "offensiveStrength": 209,
+        "defensiveStrength": 167
+    },
+    {
+        "sport": "Basketball",
+        "name": "Pascal Siakam",
+        "starTier": 3,
+        "offensiveStrength": 206,
+        "defensiveStrength": 99
+    },
+    {
+        "sport": "Basketball",
+        "name": "DeMar DeRozan",
+        "starTier": 3,
+        "offensiveStrength": 178,
+        "defensiveStrength": 127
+    },
+    {
+        "sport": "Basketball",
+        "name": "Chet Holmgren",
+        "starTier": 3,
+        "offensiveStrength": 164,
+        "defensiveStrength": 254
+    },
+    {
+        "sport": "Basketball",
+        "name": "Clint Capela",
+        "starTier": 3,
+        "offensiveStrength": 130,
+        "defensiveStrength": 62
+    },
+    {
+        "sport": "Basketball",
+        "name": "Evan Mobley",
+        "starTier": 3,
+        "offensiveStrength": 116,
+        "defensiveStrength": 277
+    },
+    {
+        "sport": "Basketball",
+        "name": "Bam Adebayo",
+        "starTier": 3,
+        "offensiveStrength": 99,
+        "defensiveStrength": 263
+    },
+    {
+        "sport": "Basketball",
+        "name": "Daniel Gafford",
+        "starTier": 3,
+        "offensiveStrength": 90,
+        "defensiveStrength": 274
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jonas Valanciunas",
+        "starTier": 3,
+        "offensiveStrength": 87,
+        "defensiveStrength": 192
+    },
+    {
+        "sport": "Basketball",
+        "name": "Rudy Gobert",
+        "starTier": 3,
+        "offensiveStrength": 51,
+        "defensiveStrength": 260
+    },
+    {
+        "sport": "Basketball",
+        "name": "James Harden",
+        "starTier": 2,
+        "offensiveStrength": 240,
+        "defensiveStrength": 184
+    },
+    {
+        "sport": "Basketball",
+        "name": "CJ McCollum",
+        "starTier": 2,
+        "offensiveStrength": 226,
+        "defensiveStrength": 133
+    },
+    {
+        "sport": "Basketball",
+        "name": "Paul George",
+        "starTier": 2,
+        "offensiveStrength": 217,
+        "defensiveStrength": 175
+    },
+    {
+        "sport": "Basketball",
+        "name": "Fred VanVleet",
+        "starTier": 2,
+        "offensiveStrength": 203,
+        "defensiveStrength": 217
+    },
+    {
+        "sport": "Basketball",
+        "name": "Derrick White",
+        "starTier": 2,
+        "offensiveStrength": 195,
+        "defensiveStrength": 249
+    },
+    {
+        "sport": "Basketball",
+        "name": "Dejounte Murray",
+        "starTier": 2,
+        "offensiveStrength": 192,
+        "defensiveStrength": 104
+    },
+    {
+        "sport": "Basketball",
+        "name": "Julius Randle",
+        "starTier": 2,
+        "offensiveStrength": 189,
+        "defensiveStrength": 130
+    },
+    {
+        "sport": "Basketball",
+        "name": "Terry Rozier",
+        "starTier": 2,
+        "offensiveStrength": 186,
+        "defensiveStrength": 96
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jalen Williams",
+        "starTier": 2,
+        "offensiveStrength": 175,
+        "defensiveStrength": 181
+    },
+    {
+        "sport": "Basketball",
+        "name": "Cade Cunningham",
+        "starTier": 2,
+        "offensiveStrength": 172,
+        "defensiveStrength": 34
+    },
+    {
+        "sport": "Basketball",
+        "name": "Karl-Anthony Towns",
+        "starTier": 2,
+        "offensiveStrength": 152,
+        "defensiveStrength": 223
+    },
+    {
+        "sport": "Basketball",
+        "name": "Brandon Ingram",
+        "starTier": 2,
+        "offensiveStrength": 144,
+        "defensiveStrength": 121
+    },
+    {
+        "sport": "Basketball",
+        "name": "Paolo Banchero",
+        "starTier": 2,
+        "offensiveStrength": 141,
+        "defensiveStrength": 155
+    },
+    {
+        "sport": "Basketball",
+        "name": "Aaron Gordon",
+        "starTier": 2,
+        "offensiveStrength": 135,
+        "defensiveStrength": 164
+    },
+    {
+        "sport": "Basketball",
+        "name": "Myles Turner",
+        "starTier": 2,
+        "offensiveStrength": 127,
+        "defensiveStrength": 150
+    },
+    {
+        "sport": "Basketball",
+        "name": "Franz Wagner",
+        "starTier": 2,
+        "offensiveStrength": 110,
+        "defensiveStrength": 178
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jaylen Brown",
+        "starTier": 2,
+        "offensiveStrength": 113,
+        "defensiveStrength": 144
+    },
+    {
+        "sport": "Basketball",
+        "name": "Ivica Zubac",
+        "starTier": 2,
+        "offensiveStrength": 96,
+        "defensiveStrength": 152
+    },
+    {
+        "sport": "Basketball",
+        "name": "Nikola Vucevic",
+        "starTier": 2,
+        "offensiveStrength": 93,
+        "defensiveStrength": 93
+    },
+    {
+        "sport": "Basketball",
+        "name": "Isaiah Hartenstein",
+        "starTier": 2,
+        "offensiveStrength": 85,
+        "defensiveStrength": 294
+    },
+    {
+        "sport": "Basketball",
+        "name": "Kelly Olynyk",
+        "starTier": 2,
+        "offensiveStrength": 82,
+        "defensiveStrength": 240
+    },
+    {
+        "sport": "Basketball",
+        "name": "Deandre Ayton",
+        "starTier": 2,
+        "offensiveStrength": 70,
+        "defensiveStrength": 138
+    },
+    {
+        "sport": "Basketball",
+        "name": "John Collins",
+        "starTier": 2,
+        "offensiveStrength": 68,
+        "defensiveStrength": 42
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jaren Jackson Jr.",
+        "starTier": 2,
+        "offensiveStrength": 45,
+        "defensiveStrength": 186
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jonathan Kuminga",
+        "starTier": 2,
+        "offensiveStrength": 42,
+        "defensiveStrength": 107
+    },
+    {
+        "sport": "Basketball",
+        "name": "Bobby Portis",
+        "starTier": 2,
+        "offensiveStrength": 48,
+        "defensiveStrength": 85
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jalen Duren",
+        "starTier": 2,
+        "offensiveStrength": 36,
+        "defensiveStrength": 161
+    },
+    {
+        "sport": "Basketball",
+        "name": "Nic Claxton",
+        "starTier": 2,
+        "offensiveStrength": 31,
+        "defensiveStrength": 251
+    },
+    {
+        "sport": "Basketball",
+        "name": "Paul Reed",
+        "starTier": 2,
+        "offensiveStrength": 28,
+        "defensiveStrength": 234
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jusuf Nurkic",
+        "starTier": 2,
+        "offensiveStrength": 22,
+        "defensiveStrength": 283
+    },
+    {
+        "sport": "Basketball",
+        "name": "Anfernee Simons",
+        "starTier": 1,
+        "offensiveStrength": 212,
+        "defensiveStrength": 20
+    },
+    {
+        "sport": "Basketball",
+        "name": "Donte DiVincenzo",
+        "starTier": 1,
+        "offensiveStrength": 198,
+        "defensiveStrength": 229
+    },
+    {
+        "sport": "Basketball",
+        "name": "Trey Murphy III",
+        "starTier": 1,
+        "offensiveStrength": 201,
+        "defensiveStrength": 158
+    },
+    {
+        "sport": "Basketball",
+        "name": "Immanuel Quickley",
+        "starTier": 1,
+        "offensiveStrength": 184,
+        "defensiveStrength": 82
+    },
+    {
+        "sport": "Basketball",
+        "name": "Mike Conley",
+        "starTier": 1,
+        "offensiveStrength": 169,
+        "defensiveStrength": 246
+    },
+    {
+        "sport": "Basketball",
+        "name": "Obi Toppin",
+        "starTier": 1,
+        "offensiveStrength": 161,
+        "defensiveStrength": 124
+    },
+    {
+        "sport": "Basketball",
+        "name": "Al Horford",
+        "starTier": 1,
+        "offensiveStrength": 155,
+        "defensiveStrength": 280
+    },
+    {
+        "sport": "Basketball",
+        "name": "D'Angelo Russell",
+        "starTier": 1,
+        "offensiveStrength": 158,
+        "defensiveStrength": 87
+    },
+    {
+        "sport": "Basketball",
+        "name": "Tyus Jones",
+        "starTier": 1,
+        "offensiveStrength": 150,
+        "defensiveStrength": 79
+    },
+    {
+        "sport": "Basketball",
+        "name": "Malik Monk",
+        "starTier": 1,
+        "offensiveStrength": 147,
+        "defensiveStrength": 65
+    },
+    {
+        "sport": "Basketball",
+        "name": "Payton Pritchard",
+        "starTier": 1,
+        "offensiveStrength": 138,
+        "defensiveStrength": 141
+    },
+    {
+        "sport": "Basketball",
+        "name": "Michael Porter Jr.",
+        "starTier": 1,
+        "offensiveStrength": 133,
+        "defensiveStrength": 51
+    },
+    {
+        "sport": "Basketball",
+        "name": "Josh Giddey",
+        "starTier": 1,
+        "offensiveStrength": 124,
+        "defensiveStrength": 189
+    },
+    {
+        "sport": "Basketball",
+        "name": "Tobias Harris",
+        "starTier": 1,
+        "offensiveStrength": 121,
+        "defensiveStrength": 147
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jerami Grant",
+        "starTier": 1,
+        "offensiveStrength": 118,
+        "defensiveStrength": 53
+    },
+    {
+        "sport": "Basketball",
+        "name": "Austin Reaves",
+        "starTier": 1,
+        "offensiveStrength": 102,
+        "defensiveStrength": 110
+    },
+    {
+        "sport": "Basketball",
+        "name": "Bradley Beal",
+        "starTier": 1,
+        "offensiveStrength": 107,
+        "defensiveStrength": 102
+    },
+    {
+        "sport": "Basketball",
+        "name": "Devin Vassell",
+        "starTier": 1,
+        "offensiveStrength": 104,
+        "defensiveStrength": 76
+    },
+    {
+        "sport": "Basketball",
+        "name": "Mikal Bridges",
+        "starTier": 1,
+        "offensiveStrength": 73,
+        "defensiveStrength": 59
+    },
+    {
+        "sport": "Basketball",
+        "name": "RJ Barrett",
+        "starTier": 1,
+        "offensiveStrength": 79,
+        "defensiveStrength": 36
+    },
+    {
+        "sport": "Basketball",
+        "name": "Cam Thomas",
+        "starTier": 1,
+        "offensiveStrength": 76,
+        "defensiveStrength": 25
+    },
+    {
+        "sport": "Basketball",
+        "name": "Kyle Kuzma",
+        "starTier": 1,
+        "offensiveStrength": 65,
+        "defensiveStrength": 31
+    },
+    {
+        "sport": "Basketball",
+        "name": "Naz Reid",
+        "starTier": 1,
+        "offensiveStrength": 59,
+        "defensiveStrength": 237
+    },
+    {
+        "sport": "Basketball",
+        "name": "Jalen Johnson",
+        "starTier": 1,
+        "offensiveStrength": 62,
+        "defensiveStrength": 215
+    },
+    {
+        "sport": "Basketball",
+        "name": "Brook Lopez",
+        "starTier": 1,
+        "offensiveStrength": 53,
+        "defensiveStrength": 212
+    },
+    {
+        "sport": "Basketball",
+        "name": "Miles Bridges",
+        "starTier": 1,
+        "offensiveStrength": 56,
+        "defensiveStrength": 45
+    },
+    {
+        "sport": "Basketball",
+        "name": "Rui Hachimura",
+        "starTier": 1,
+        "offensiveStrength": 39,
+        "defensiveStrength": 73
+    },
+    {
+        "sport": "Basketball",
+        "name": "Russell Westbrook",
+        "starTier": 1,
+        "offensiveStrength": 34,
+        "defensiveStrength": 206
+    },
+    {
+        "sport": "Basketball",
+        "name": "Deni Avdija",
+        "starTier": 1,
+        "offensiveStrength": 25,
+        "defensiveStrength": 135
+    },
+    {
+        "sport": "Basketball",
+        "name": "Nick Richards",
+        "starTier": 1,
+        "offensiveStrength": 20,
+        "defensiveStrength": 90
+    }
+]

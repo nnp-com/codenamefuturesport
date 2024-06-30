@@ -1,0 +1,702 @@
+[
+    {
+        "sport": "Baseball",
+        "name": "Aaron Judge",
+        "starTier": 5,
+        "offensiveStrength": 300,
+        "defensiveStrength": 68
+    },
+    {
+        "sport": "Baseball",
+        "name": "Shohei Ohtani",
+        "starTier": 5,
+        "offensiveStrength": 297,
+        "defensiveStrength": 20
+    },
+    {
+        "sport": "Baseball",
+        "name": "Juan Soto",
+        "starTier": 5,
+        "offensiveStrength": 294,
+        "defensiveStrength": 181
+    },
+    {
+        "sport": "Baseball",
+        "name": "Gunnar Henderson",
+        "starTier": 5,
+        "offensiveStrength": 291,
+        "defensiveStrength": 266
+    },
+    {
+        "sport": "Baseball",
+        "name": "Bobby Witt Jr.",
+        "starTier": 5,
+        "offensiveStrength": 280,
+        "defensiveStrength": 300
+    },
+    {
+        "sport": "Baseball",
+        "name": "Marcell Ozuna",
+        "starTier": 4,
+        "offensiveStrength": 288,
+        "defensiveStrength": 25
+    },
+    {
+        "sport": "Baseball",
+        "name": "Kyle Tucker",
+        "starTier": 4,
+        "offensiveStrength": 285,
+        "defensiveStrength": 116
+    },
+    {
+        "sport": "Baseball",
+        "name": "Mookie Betts",
+        "starTier": 4,
+        "offensiveStrength": 283,
+        "defensiveStrength": 102
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jurickson Profar",
+        "starTier": 4,
+        "offensiveStrength": 277,
+        "defensiveStrength": 39
+    },
+    {
+        "sport": "Baseball",
+        "name": "Freddie Freeman",
+        "starTier": 4,
+        "offensiveStrength": 274,
+        "defensiveStrength": 42
+    },
+    {
+        "sport": "Baseball",
+        "name": "Steven Kwan",
+        "starTier": 4,
+        "offensiveStrength": 271,
+        "defensiveStrength": 184
+    },
+    {
+        "sport": "Baseball",
+        "name": "Bryce Harper",
+        "starTier": 4,
+        "offensiveStrength": 268,
+        "defensiveStrength": 135
+    },
+    {
+        "sport": "Baseball",
+        "name": "Ketel Marte",
+        "starTier": 4,
+        "offensiveStrength": 254,
+        "defensiveStrength": 251
+    },
+    {
+        "sport": "Baseball",
+        "name": "Carlos Correa",
+        "starTier": 4,
+        "offensiveStrength": 243,
+        "defensiveStrength": 206
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jarren Duran",
+        "starTier": 4,
+        "offensiveStrength": 226,
+        "defensiveStrength": 198
+    },
+    {
+        "sport": "Baseball",
+        "name": "Elly De La Cruz",
+        "starTier": 4,
+        "offensiveStrength": 209,
+        "defensiveStrength": 254
+    },
+    {
+        "sport": "Baseball",
+        "name": "Will Smith",
+        "starTier": 4,
+        "offensiveStrength": 169,
+        "defensiveStrength": 277
+    },
+    {
+        "sport": "Baseball",
+        "name": "Willy Adames",
+        "starTier": 4,
+        "offensiveStrength": 133,
+        "defensiveStrength": 291
+    },
+    {
+        "sport": "Baseball",
+        "name": "Francisco Lindor",
+        "starTier": 4,
+        "offensiveStrength": 127,
+        "defensiveStrength": 283
+    },
+    {
+        "sport": "Baseball",
+        "name": "Anthony Volpe",
+        "starTier": 4,
+        "offensiveStrength": 124,
+        "defensiveStrength": 285
+    },
+    {
+        "sport": "Baseball",
+        "name": "Christian Yelich",
+        "starTier": 3,
+        "offensiveStrength": 266,
+        "defensiveStrength": 62
+    },
+    {
+        "sport": "Baseball",
+        "name": "David Fry",
+        "starTier": 3,
+        "offensiveStrength": 263,
+        "defensiveStrength": 79
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jose Ramirez",
+        "starTier": 3,
+        "offensiveStrength": 260,
+        "defensiveStrength": 90
+    },
+    {
+        "sport": "Baseball",
+        "name": "Rafael Devers",
+        "starTier": 3,
+        "offensiveStrength": 257,
+        "defensiveStrength": 96
+    },
+    {
+        "sport": "Baseball",
+        "name": "Heliot Ramos",
+        "starTier": 3,
+        "offensiveStrength": 240,
+        "defensiveStrength": 152
+    },
+    {
+        "sport": "Baseball",
+        "name": "Fernando Tatis Jr.",
+        "starTier": 3,
+        "offensiveStrength": 237,
+        "defensiveStrength": 93
+    },
+    {
+        "sport": "Baseball",
+        "name": "Josh Smith",
+        "starTier": 3,
+        "offensiveStrength": 229,
+        "defensiveStrength": 121
+    },
+    {
+        "sport": "Baseball",
+        "name": "William Contreras",
+        "starTier": 3,
+        "offensiveStrength": 215,
+        "defensiveStrength": 172
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jordan Westburg",
+        "starTier": 3,
+        "offensiveStrength": 212,
+        "defensiveStrength": 155
+    },
+    {
+        "sport": "Baseball",
+        "name": "JJ Bleday",
+        "starTier": 3,
+        "offensiveStrength": 206,
+        "defensiveStrength": 113
+    },
+    {
+        "sport": "Baseball",
+        "name": "Alec Bohm",
+        "starTier": 3,
+        "offensiveStrength": 203,
+        "defensiveStrength": 138
+    },
+    {
+        "sport": "Baseball",
+        "name": "Joey Ortiz",
+        "starTier": 3,
+        "offensiveStrength": 186,
+        "defensiveStrength": 249
+    },
+    {
+        "sport": "Baseball",
+        "name": "Willi Castro",
+        "starTier": 3,
+        "offensiveStrength": 184,
+        "defensiveStrength": 212
+    },
+    {
+        "sport": "Baseball",
+        "name": "Salvador Perez",
+        "starTier": 3,
+        "offensiveStrength": 178,
+        "defensiveStrength": 161
+    },
+    {
+        "sport": "Baseball",
+        "name": "Adley Rutschman",
+        "starTier": 3,
+        "offensiveStrength": 172,
+        "defensiveStrength": 189
+    },
+    {
+        "sport": "Baseball",
+        "name": "Colton Cowser",
+        "starTier": 3,
+        "offensiveStrength": 118,
+        "defensiveStrength": 257
+    },
+    {
+        "sport": "Baseball",
+        "name": "Ha-Seong Kim",
+        "starTier": 3,
+        "offensiveStrength": 104,
+        "defensiveStrength": 234
+    },
+    {
+        "sport": "Baseball",
+        "name": "Daulton Varsho",
+        "starTier": 3,
+        "offensiveStrength": 102,
+        "defensiveStrength": 271
+    },
+    {
+        "sport": "Baseball",
+        "name": "Marcus Semien",
+        "starTier": 3,
+        "offensiveStrength": 96,
+        "defensiveStrength": 297
+    },
+    {
+        "sport": "Baseball",
+        "name": "Ezequiel Tovar",
+        "starTier": 3,
+        "offensiveStrength": 73,
+        "defensiveStrength": 294
+    },
+    {
+        "sport": "Baseball",
+        "name": "Joc Pederson",
+        "starTier": 2,
+        "offensiveStrength": 251,
+        "defensiveStrength": 36
+    },
+    {
+        "sport": "Baseball",
+        "name": "Kyle Schwarber",
+        "starTier": 2,
+        "offensiveStrength": 249,
+        "defensiveStrength": 22
+    },
+    {
+        "sport": "Baseball",
+        "name": "Yordan Alvarez",
+        "starTier": 2,
+        "offensiveStrength": 246,
+        "defensiveStrength": 31
+    },
+    {
+        "sport": "Baseball",
+        "name": "Riley Greene",
+        "starTier": 2,
+        "offensiveStrength": 234,
+        "defensiveStrength": 48
+    },
+    {
+        "sport": "Baseball",
+        "name": "Teoscar Hernandez",
+        "starTier": 2,
+        "offensiveStrength": 232,
+        "defensiveStrength": 45
+    },
+    {
+        "sport": "Baseball",
+        "name": "Isaac Paredes",
+        "starTier": 2,
+        "offensiveStrength": 223,
+        "defensiveStrength": 76
+    },
+    {
+        "sport": "Baseball",
+        "name": "LaMonte Wade Jr.",
+        "starTier": 2,
+        "offensiveStrength": 220,
+        "defensiveStrength": 141
+    },
+    {
+        "sport": "Baseball",
+        "name": "Willson Contreras",
+        "starTier": 2,
+        "offensiveStrength": 201,
+        "defensiveStrength": 175
+    },
+    {
+        "sport": "Baseball",
+        "name": "Brandon Nimmo",
+        "starTier": 2,
+        "offensiveStrength": 198,
+        "defensiveStrength": 82
+    },
+    {
+        "sport": "Baseball",
+        "name": "Brice Turang",
+        "starTier": 2,
+        "offensiveStrength": 195,
+        "defensiveStrength": 133
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jose Altuve",
+        "starTier": 2,
+        "offensiveStrength": 192,
+        "defensiveStrength": 104
+    },
+    {
+        "sport": "Baseball",
+        "name": "Connor Wong",
+        "starTier": 2,
+        "offensiveStrength": 181,
+        "defensiveStrength": 118
+    },
+    {
+        "sport": "Baseball",
+        "name": "Michael Busch",
+        "starTier": 2,
+        "offensiveStrength": 161,
+        "defensiveStrength": 99
+    },
+    {
+        "sport": "Baseball",
+        "name": "Christian Walker",
+        "starTier": 2,
+        "offensiveStrength": 158,
+        "defensiveStrength": 144
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jazz Chisholm Jr.",
+        "starTier": 2,
+        "offensiveStrength": 152,
+        "defensiveStrength": 70
+    },
+    {
+        "sport": "Baseball",
+        "name": "Wilyer Abreu",
+        "starTier": 2,
+        "offensiveStrength": 147,
+        "defensiveStrength": 167
+    },
+    {
+        "sport": "Baseball",
+        "name": "Edmundo Sosa",
+        "starTier": 2,
+        "offensiveStrength": 138,
+        "defensiveStrength": 232
+    },
+    {
+        "sport": "Baseball",
+        "name": "Ryan Jeffers",
+        "starTier": 2,
+        "offensiveStrength": 135,
+        "defensiveStrength": 158
+    },
+    {
+        "sport": "Baseball",
+        "name": "Patrick Bailey",
+        "starTier": 2,
+        "offensiveStrength": 113,
+        "defensiveStrength": 268
+    },
+    {
+        "sport": "Baseball",
+        "name": "Corey Seager",
+        "starTier": 2,
+        "offensiveStrength": 93,
+        "defensiveStrength": 164
+    },
+    {
+        "sport": "Baseball",
+        "name": "Josh Rojas",
+        "starTier": 2,
+        "offensiveStrength": 87,
+        "defensiveStrength": 288
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jackson Merrill",
+        "starTier": 2,
+        "offensiveStrength": 82,
+        "defensiveStrength": 195
+    },
+    {
+        "sport": "Baseball",
+        "name": "Ryan McMahon",
+        "starTier": 2,
+        "offensiveStrength": 79,
+        "defensiveStrength": 192
+    },
+    {
+        "sport": "Baseball",
+        "name": "Brenton Doyle",
+        "starTier": 2,
+        "offensiveStrength": 62,
+        "defensiveStrength": 229
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jose Trevino",
+        "starTier": 2,
+        "offensiveStrength": 56,
+        "defensiveStrength": 260
+    },
+    {
+        "sport": "Baseball",
+        "name": "Matt Chapman",
+        "starTier": 2,
+        "offensiveStrength": 53,
+        "defensiveStrength": 203
+    },
+    {
+        "sport": "Baseball",
+        "name": "Blake Perkins",
+        "starTier": 2,
+        "offensiveStrength": 48,
+        "defensiveStrength": 246
+    },
+    {
+        "sport": "Baseball",
+        "name": "Alex Bregman",
+        "starTier": 2,
+        "offensiveStrength": 42,
+        "defensiveStrength": 223
+    },
+    {
+        "sport": "Baseball",
+        "name": "Cal Raleigh",
+        "starTier": 2,
+        "offensiveStrength": 22,
+        "defensiveStrength": 280
+    },
+    {
+        "sport": "Baseball",
+        "name": "Thairo Estrada",
+        "starTier": 2,
+        "offensiveStrength": 20,
+        "defensiveStrength": 263
+    },
+    {
+        "sport": "Baseball",
+        "name": "Brent Rooker",
+        "starTier": 1,
+        "offensiveStrength": 217,
+        "defensiveStrength": 28
+    },
+    {
+        "sport": "Baseball",
+        "name": "Tyler O'Neill",
+        "starTier": 1,
+        "offensiveStrength": 189,
+        "defensiveStrength": 53
+    },
+    {
+        "sport": "Baseball",
+        "name": "Kevin Pillar",
+        "starTier": 1,
+        "offensiveStrength": 175,
+        "defensiveStrength": 73
+    },
+    {
+        "sport": "Baseball",
+        "name": "Trea Turner",
+        "starTier": 1,
+        "offensiveStrength": 167,
+        "defensiveStrength": 110
+    },
+    {
+        "sport": "Baseball",
+        "name": "Anthony Santander",
+        "starTier": 1,
+        "offensiveStrength": 164,
+        "defensiveStrength": 34
+    },
+    {
+        "sport": "Baseball",
+        "name": "Luis Rengifo",
+        "starTier": 1,
+        "offensiveStrength": 155,
+        "defensiveStrength": 56
+    },
+    {
+        "sport": "Baseball",
+        "name": "Mark Vientos",
+        "starTier": 1,
+        "offensiveStrength": 150,
+        "defensiveStrength": 147
+    },
+    {
+        "sport": "Baseball",
+        "name": "Ryan O'Hearn",
+        "starTier": 1,
+        "offensiveStrength": 144,
+        "defensiveStrength": 85
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jake McCarthy",
+        "starTier": 1,
+        "offensiveStrength": 141,
+        "defensiveStrength": 107
+    },
+    {
+        "sport": "Baseball",
+        "name": "Mike Tauchman",
+        "starTier": 1,
+        "offensiveStrength": 130,
+        "defensiveStrength": 65
+    },
+    {
+        "sport": "Baseball",
+        "name": "Logan O'Hoppe",
+        "starTier": 1,
+        "offensiveStrength": 121,
+        "defensiveStrength": 87
+    },
+    {
+        "sport": "Baseball",
+        "name": "Ian Happ",
+        "starTier": 1,
+        "offensiveStrength": 116,
+        "defensiveStrength": 51
+    },
+    {
+        "sport": "Baseball",
+        "name": "CJ Abrams",
+        "starTier": 1,
+        "offensiveStrength": 110,
+        "defensiveStrength": 59
+    },
+    {
+        "sport": "Baseball",
+        "name": "Masyn Winn",
+        "starTier": 1,
+        "offensiveStrength": 107,
+        "defensiveStrength": 127
+    },
+    {
+        "sport": "Baseball",
+        "name": "Brandon Marsh",
+        "starTier": 1,
+        "offensiveStrength": 99,
+        "defensiveStrength": 150
+    },
+    {
+        "sport": "Baseball",
+        "name": "Danny Jansen",
+        "starTier": 1,
+        "offensiveStrength": 90,
+        "defensiveStrength": 209
+    },
+    {
+        "sport": "Baseball",
+        "name": "Max Kepler",
+        "starTier": 1,
+        "offensiveStrength": 85,
+        "defensiveStrength": 186
+    },
+    {
+        "sport": "Baseball",
+        "name": "Miguel Rojas",
+        "starTier": 1,
+        "offensiveStrength": 76,
+        "defensiveStrength": 237
+    },
+    {
+        "sport": "Baseball",
+        "name": "Paul DeJong",
+        "starTier": 1,
+        "offensiveStrength": 70,
+        "defensiveStrength": 178
+    },
+    {
+        "sport": "Baseball",
+        "name": "Bryson Stott",
+        "starTier": 1,
+        "offensiveStrength": 68,
+        "defensiveStrength": 130
+    },
+    {
+        "sport": "Baseball",
+        "name": "Alex Verdugo",
+        "starTier": 1,
+        "offensiveStrength": 65,
+        "defensiveStrength": 124
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jake Meyers",
+        "starTier": 1,
+        "offensiveStrength": 59,
+        "defensiveStrength": 220
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jose Caballero",
+        "starTier": 1,
+        "offensiveStrength": 51,
+        "defensiveStrength": 217
+    },
+    {
+        "sport": "Baseball",
+        "name": "Austin Riley",
+        "starTier": 1,
+        "offensiveStrength": 45,
+        "defensiveStrength": 201
+    },
+    {
+        "sport": "Baseball",
+        "name": "Elias Di\u00adaz",
+        "starTier": 1,
+        "offensiveStrength": 39,
+        "defensiveStrength": 240
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jeremy Pena",
+        "starTier": 1,
+        "offensiveStrength": 36,
+        "defensiveStrength": 215
+    },
+    {
+        "sport": "Baseball",
+        "name": "Julio Rodri\u00adguez",
+        "starTier": 1,
+        "offensiveStrength": 34,
+        "defensiveStrength": 169
+    },
+    {
+        "sport": "Baseball",
+        "name": "Isiah Kiner-Falefa",
+        "starTier": 1,
+        "offensiveStrength": 31,
+        "defensiveStrength": 243
+    },
+    {
+        "sport": "Baseball",
+        "name": "Jacob Young",
+        "starTier": 1,
+        "offensiveStrength": 28,
+        "defensiveStrength": 274
+    },
+    {
+        "sport": "Baseball",
+        "name": "Maikel Garcia",
+        "starTier": 1,
+        "offensiveStrength": 25,
+        "defensiveStrength": 226
+    }
+]

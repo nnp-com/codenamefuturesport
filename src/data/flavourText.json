@@ -1,0 +1,436 @@
+[{
+    "SoccerAttacking_BasketballDefending": {
+      "successfulAttack": [
+        {
+          "id": 1,
+          "event": "goal",
+          "points": 65,
+          "text": "[Player One] dribbled past [Player Two] and scored a stunning goal! 65 points to [Player One]!"
+        },
+        {
+          "id": 2,
+          "event": "goal",
+          "points": 65,
+          "text": "With a quick flick, [Player One] left [Player Two] grabbing at air. Goal! 65 points for [Player One]!"
+        },
+        {
+          "id": 3,
+          "event": "assist",
+          "points": 25,
+          "text": "[Player One] delivered a perfect cross to the teammate who scored with ease. Assist! 25 points for [Player One]!"
+        },
+        {
+          "id": 4,
+          "event": "pass",
+          "points": 10,
+          "text": "A smooth pass from [Player One] left [Player Two] spinning. 10 points for the pass!"
+        }
+      ],
+      "successfulDefense": [
+        {
+          "id": 1,
+          "event": "goal",
+          "points": 65,
+          "text": "[Player Two] blocked the shot like a pro, leaving [Player One] frustrated. No points!"
+        },
+        {
+          "id": 2,
+          "event": "goal",
+          "points": 65,
+          "text": "An epic block by [Player Two]! [Player One]'s shot was denied!"
+        },
+        {
+          "id": 3,
+          "event": "assist",
+          "points": 25,
+          "text": "[Player Two] intercepted the pass with a spectacular leap! No assist for [Player One]!"
+        },
+        {
+          "id": 4,
+          "event": "pass",
+          "points": 10,
+          "text": "[Player Two] snatched the ball mid-pass. [Player One] loses out on the points!"
+        }
+      ]
+    },
+    "BaseballAttacking_SoccerDefending": {
+      "successfulAttack": [
+        {
+          "id": 1,
+          "event": "homerun",
+          "points": 50,
+          "text": "[Player One] swung for the fences and nailed a homerun past [Player Two]'s desperate dive. 50 points!"
+        },
+        {
+          "id": 2,
+          "event": "triple",
+          "points": 30,
+          "text": "A powerful hit by [Player One] sends the ball flying! [Player Two] can't catch up. Triple and 30 points!"
+        },
+        {
+          "id": 3,
+          "event": "double",
+          "points": 20,
+          "text": "[Player One] smashed a double, leaving [Player Two] scrambling. 20 points scored!"
+        },
+        {
+          "id": 4,
+          "event": "single",
+          "points": 10,
+          "text": "[Player One] hits a clean single. [Player Two] couldn't stop it. 10 points!"
+        }
+      ],
+      "successfulDefense": [
+        {
+          "id": 1,
+          "event": "homerun",
+          "points": 50,
+          "text": "[Player Two] leaps and catches the ball at the last moment! No homerun for [Player One]!"
+        },
+        {
+          "id": 2,
+          "event": "triple",
+          "points": 30,
+          "text": "With a swift move, [Player Two] intercepts the ball. [Player One] is denied a triple!"
+        },
+        {
+          "id": 3,
+          "event": "double",
+          "points": 20,
+          "text": "[Player Two] slides in and stops the ball just in time. No double for [Player One]!"
+        },
+        {
+          "id": 4,
+          "event": "single",
+          "points": 10,
+          "text": "[Player Two] catches the ball with ease. [Player One] loses the chance for a single!"
+        }
+      ]
+    },
+    "BasketballAttacking_SoccerDefending": {
+      "successfulAttack": [
+        {
+          "id": 1,
+          "event": "three-pointer",
+          "points": 30,
+          "text": "[Player One] sinks a three-pointer from downtown, leaving [Player Two] helpless. 30 points!"
+        },
+        {
+          "id": 2,
+          "event": "basket",
+          "points": 15,
+          "text": "A smooth layup by [Player One] leaves [Player Two] in the dust. Basket and 15 points!"
+        },
+        {
+          "id": 3,
+          "event": "basket",
+          "points": 15,
+          "text": "[Player One] fakes and scores an easy basket while [Player Two] watches in disbelief. 15 points!"
+        },
+        {
+          "id": 4,
+          "event": "rebound",
+          "points": 10,
+          "text": "[Player One] grabs a rebound and puts it back in! 10 points for [Player One]!"
+        }
+      ],
+      "successfulDefense": [
+        {
+          "id": 1,
+          "event": "three-pointer",
+          "points": 30,
+          "text": "[Player Two] blocks the shot just in time! No three-pointer for [Player One]!"
+        },
+        {
+          "id": 2,
+          "event": "basket",
+          "points": 15,
+          "text": "A fantastic save by [Player Two]! [Player One] misses the basket."
+        },
+        {
+          "id": 3,
+          "event": "basket",
+          "points": 15,
+          "text": "[Player Two] deflects the ball away! No points for [Player One]."
+        },
+        {
+          "id": 4,
+          "event": "rebound",
+          "points": 10,
+          "text": "[Player Two] snatches the rebound from [Player One]! No points scored."
+        }
+      ]
+    },
+    "SoccerAttacking_BaseballDefending": {
+      "successfulAttack": [
+        {
+          "id": 1,
+          "event": "goal",
+          "points": 65,
+          "text": "[Player One] blasts the ball past [Player Two]'s bat. Goal! 65 points to [Player One]!"
+        },
+        {
+          "id": 2,
+          "event": "assist",
+          "points": 25,
+          "text": "A clever assist from [Player One] sets up the goal. 25 points for [Player One]!"
+        },
+        {
+          "id": 3,
+          "event": "goal",
+          "points": 65,
+          "text": "[Player One] weaves through and scores while [Player Two] swings at air. Goal! 65 points!"
+        },
+        {
+          "id": 4,
+          "event": "pass",
+          "points": 10,
+          "text": "A swift pass from [Player One] leaves [Player Two] flailing. 10 points for the pass!"
+        }
+      ],
+      "successfulDefense": [
+        {
+          "id": 1,
+          "event": "goal",
+          "points": 65,
+          "text": "[Player Two] swings the bat and knocks the ball away! No goal for [Player One]!"
+        },
+        {
+          "id": 2,
+          "event": "assist",
+          "points": 25,
+          "text": "[Player Two] intercepts the assist with a fantastic catch. No points for [Player One]!"
+        },
+        {
+          "id": 3,
+          "event": "goal",
+          "points": 65,
+          "text": "An incredible stop by [Player Two]! [Player One] can't believe it. No goal!"
+        },
+        {
+          "id": 4,
+          "event": "pass",
+          "points": 10,
+          "text": "[Player Two] deflects the pass with the bat. No points for [Player One]!"
+        }
+      ]
+    },
+        "BaseballAttacking_BasketballDefending": {
+          "successfulAttack": [
+            {
+              "id": 1,
+              "event": "homerun",
+              "points": 50,
+              "text": "[Player One] smashes the ball out of the park while [Player Two] can only watch. Home run! 50 points!"
+            },
+            {
+              "id": 2,
+              "event": "triple",
+              "points": 30,
+              "text": "A rocket hit by [Player One] results in a triple. [Player Two] couldn't even jump high enough! 30 points!"
+            },
+            {
+              "id": 3,
+              "event": "double",
+              "points": 20,
+              "text": "[Player One] hits a solid double, leaving [Player Two] staring in disbelief. 20 points!"
+            },
+            {
+              "id": 4,
+              "event": "single",
+              "points": 10,
+              "text": "[Player One] taps a single and dashes to first base before [Player Two] can react. 10 points!"
+            }
+          ],
+          "successfulDefense": [
+            {
+              "id": 1,
+              "event": "homerun",
+              "points": 50,
+              "text": "[Player Two] leaps and catches the ball just before it goes out. No home run for [Player One]!"
+            },
+            {
+              "id": 2,
+              "event": "triple",
+              "points": 30,
+              "text": "With an impressive block, [Player Two] denies [Player One] a triple!"
+            },
+            {
+              "id": 3,
+              "event": "double",
+              "points": 20,
+              "text": "[Player Two] intercepts the hit, stopping [Player One] from scoring a double!"
+            },
+            {
+              "id": 4,
+              "event": "single",
+              "points": 10,
+              "text": "[Player Two] quickly grabs the ball, preventing [Player One] from reaching first base. No points!"
+            }
+          ]
+        },
+        "SoccerAttacking_SoccerDefending": {
+          "successfulAttack": [
+            {
+              "id": 1,
+              "event": "goal",
+              "points": 65,
+              "text": "[Player One] bends it like Beckham past [Player Two]. Goal! 65 points to [Player One]!"
+            },
+            {
+              "id": 2,
+              "event": "assist",
+              "points": 25,
+              "text": "A slick assist from [Player One] leads to an easy goal. 25 points!"
+            },
+            {
+              "id": 3,
+              "event": "goal",
+              "points": 65,
+              "text": "[Player One] outmaneuvers [Player Two] and scores a fantastic goal. 65 points!"
+            },
+            {
+              "id": 4,
+              "event": "pass",
+              "points": 10,
+              "text": "[Player One] makes a sharp pass that leaves [Player Two] scrambling. 10 points!"
+            }
+          ],
+          "successfulDefense": [
+            {
+              "id": 1,
+              "event": "goal",
+              "points": 65,
+              "text": "[Player Two] makes an incredible save, stopping [Player One]'s goal attempt!"
+            },
+            {
+              "id": 2,
+              "event": "assist",
+              "points": 25,
+              "text": "[Player Two] intercepts the assist with a deft move. No points for [Player One]!"
+            },
+            {
+              "id": 3,
+              "event": "goal",
+              "points": 65,
+              "text": "A heroic block by [Player Two] denies [Player One] the goal!"
+            },
+            {
+              "id": 4,
+              "event": "pass",
+              "points": 10,
+              "text": "[Player Two] cuts off the pass with perfect timing. No points for [Player One]!"
+            }
+          ]
+        },
+        "BasketballAttacking_BasketballDefending": {
+          "successfulAttack": [
+            {
+              "id": 1,
+              "event": "three-pointer",
+              "points": 30,
+              "text": "[Player One] nails a three-pointer, leaving [Player Two] flat-footed. 30 points!"
+            },
+            {
+              "id": 2,
+              "event": "basket",
+              "points": 15,
+              "text": "A perfect dunk by [Player One] over [Player Two]. 15 points!"
+            },
+            {
+              "id": 3,
+              "event": "rebound",
+              "points": 10,
+              "text": "[Player One] snatches the rebound and scores! 10 points!"
+            },
+            {
+              "id": 4,
+              "event": "basket",
+              "points": 15,
+              "text": "With a swift move, [Player One] scores an easy basket. 15 points!"
+            }
+          ],
+          "successfulDefense": [
+            {
+              "id": 1,
+              "event": "three-pointer",
+              "points": 30,
+              "text": "[Player Two] leaps and blocks the three-pointer! No points for [Player One]!"
+            },
+            {
+              "id": 2,
+              "event": "basket",
+              "points": 15,
+              "text": "A powerful block by [Player Two]! [Player One] misses the basket."
+            },
+            {
+              "id": 3,
+              "event": "rebound",
+              "points": 10,
+              "text": "[Player Two] grabs the rebound right out of [Player One]'s hands. No points!"
+            },
+            {
+              "id": 4,
+              "event": "basket",
+              "points": 15,
+              "text": "[Player Two] stuffs [Player One]'s shot! No points scored."
+            }
+          ]
+        },
+        "BaseballAttacking_BaseballDefending": {
+          "successfulAttack": [
+            {
+              "id": 1,
+              "event": "homerun",
+              "points": 50,
+              "text": "[Player One] hits a monster homerun over the fence while [Player Two] watches it sail. 50 points!"
+            },
+            {
+              "id": 2,
+              "event": "triple",
+              "points": 30,
+              "text": "A powerful hit by [Player One] results in a triple. [Player Two] can't reach it in time! 30 points!"
+            },
+            {
+              "id": 3,
+              "event": "double",
+              "points": 20,
+              "text": "[Player One] lines a double down the line, leaving [Player Two] chasing shadows. 20 points!"
+            },
+            {
+              "id": 4,
+              "event": "single",
+              "points": 10,
+              "text": "[Player One] taps a single past [Player Two]'s glove. 10 points!"
+            }
+          ],
+          "successfulDefense": [
+            {
+              "id": 1,
+              "event": "homerun",
+              "points": 50,
+              "text": "[Player Two] makes a leaping catch at the fence! No homerun for [Player One]!"
+            },
+            {
+              "id": 2,
+              "event": "triple",
+              "points": 30,
+              "text": "A diving stop by [Player Two] robs [Player One] of a triple!"
+            },
+            {
+              "id": 3,
+              "event": "double",
+              "points": 20,
+              "text": "[Player Two] fields the ball cleanly and prevents the double. No points for [Player One]!"
+            },
+            {
+              "id": 4,
+              "event": "single",
+              "points": 10,
+              "text": "[Player Two] snags the grounder and throws [Player One] out. No single!"
+            }
+          ]
+        }
+      }
+    ]
+    

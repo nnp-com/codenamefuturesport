@@ -1,0 +1,702 @@
+[
+    {
+        "sport": "Soccer",
+        "name": "Kylian Mbapp\u00e9",
+        "starTier": 5,
+        "offensiveStrength": 300,
+        "defensiveStrength": 25
+    },
+    {
+        "sport": "Soccer",
+        "name": "Harry Kane",
+        "starTier": 5,
+        "offensiveStrength": 297,
+        "defensiveStrength": 68
+    },
+    {
+        "sport": "Soccer",
+        "name": "Deniz Undav",
+        "starTier": 5,
+        "offensiveStrength": 291,
+        "defensiveStrength": 164
+    },
+    {
+        "sport": "Soccer",
+        "name": "Serhou Guirassy",
+        "starTier": 5,
+        "offensiveStrength": 294,
+        "defensiveStrength": 56
+    },
+    {
+        "sport": "Soccer",
+        "name": "Cole Palmer",
+        "starTier": 5,
+        "offensiveStrength": 288,
+        "defensiveStrength": 167
+    },
+    {
+        "sport": "Soccer",
+        "name": "Jude Bellingham",
+        "starTier": 4,
+        "offensiveStrength": 268,
+        "defensiveStrength": 246
+    },
+    {
+        "sport": "Soccer",
+        "name": "Erling Haaland",
+        "starTier": 4,
+        "offensiveStrength": 285,
+        "defensiveStrength": 31
+    },
+    {
+        "sport": "Soccer",
+        "name": "Artem Dovbyk",
+        "starTier": 4,
+        "offensiveStrength": 283,
+        "defensiveStrength": 20
+    },
+    {
+        "sport": "Soccer",
+        "name": "Paulo Dybala",
+        "starTier": 4,
+        "offensiveStrength": 274,
+        "defensiveStrength": 130
+    },
+    {
+        "sport": "Soccer",
+        "name": "Alexander Sorloth",
+        "starTier": 4,
+        "offensiveStrength": 280,
+        "defensiveStrength": 22
+    },
+    {
+        "sport": "Soccer",
+        "name": "Lois Openda",
+        "starTier": 4,
+        "offensiveStrength": 277,
+        "defensiveStrength": 28
+    },
+    {
+        "sport": "Soccer",
+        "name": "Vinicius Junior",
+        "starTier": 4,
+        "offensiveStrength": 266,
+        "defensiveStrength": 99
+    },
+    {
+        "sport": "Soccer",
+        "name": "Mohamed Salah",
+        "starTier": 4,
+        "offensiveStrength": 271,
+        "defensiveStrength": 70
+    },
+    {
+        "sport": "Soccer",
+        "name": "Lautaro Marti\u00adnez",
+        "starTier": 4,
+        "offensiveStrength": 260,
+        "defensiveStrength": 158
+    },
+    {
+        "sport": "Soccer",
+        "name": "Bukayo Saka",
+        "starTier": 4,
+        "offensiveStrength": 201,
+        "defensiveStrength": 249
+    },
+    {
+        "sport": "Soccer",
+        "name": "Ademola Lookman",
+        "starTier": 4,
+        "offensiveStrength": 249,
+        "defensiveStrength": 150
+    },
+    {
+        "sport": "Soccer",
+        "name": "Phil Foden",
+        "starTier": 4,
+        "offensiveStrength": 240,
+        "defensiveStrength": 155
+    },
+    {
+        "sport": "Soccer",
+        "name": "Alexander Isak",
+        "starTier": 4,
+        "offensiveStrength": 263,
+        "defensiveStrength": 48
+    },
+    {
+        "sport": "Soccer",
+        "name": "Olivier Giroud",
+        "starTier": 4,
+        "offensiveStrength": 254,
+        "defensiveStrength": 82
+    },
+    {
+        "sport": "Soccer",
+        "name": "Pierre-Emerick Aubameyang",
+        "starTier": 4,
+        "offensiveStrength": 246,
+        "defensiveStrength": 121
+    },
+    {
+        "sport": "Soccer",
+        "name": "Charles De Ketelaere",
+        "starTier": 3,
+        "offensiveStrength": 212,
+        "defensiveStrength": 189
+    },
+    {
+        "sport": "Soccer",
+        "name": "Florian Wirtz",
+        "starTier": 3,
+        "offensiveStrength": 232,
+        "defensiveStrength": 147
+    },
+    {
+        "sport": "Soccer",
+        "name": "Gorka Guruzeta",
+        "starTier": 3,
+        "offensiveStrength": 198,
+        "defensiveStrength": 232
+    },
+    {
+        "sport": "Soccer",
+        "name": "Ollie Watkins",
+        "starTier": 3,
+        "offensiveStrength": 257,
+        "defensiveStrength": 51
+    },
+    {
+        "sport": "Soccer",
+        "name": "Jan-Niklas Beste",
+        "starTier": 3,
+        "offensiveStrength": 150,
+        "defensiveStrength": 277
+    },
+    {
+        "sport": "Soccer",
+        "name": "Andrej Kramaric",
+        "starTier": 3,
+        "offensiveStrength": 243,
+        "defensiveStrength": 79
+    },
+    {
+        "sport": "Soccer",
+        "name": "Darwin Nunez",
+        "starTier": 3,
+        "offensiveStrength": 234,
+        "defensiveStrength": 127
+    },
+    {
+        "sport": "Soccer",
+        "name": "Robert Lewandowski",
+        "starTier": 3,
+        "offensiveStrength": 251,
+        "defensiveStrength": 65
+    },
+    {
+        "sport": "Soccer",
+        "name": "\u00c3\u0081lex Grimaldo",
+        "starTier": 3,
+        "offensiveStrength": 186,
+        "defensiveStrength": 234
+    },
+    {
+        "sport": "Soccer",
+        "name": "\u00c3\u0081lvaro Morata",
+        "starTier": 3,
+        "offensiveStrength": 237,
+        "defensiveStrength": 76
+    },
+    {
+        "sport": "Soccer",
+        "name": "Jean-Philippe Mateta",
+        "starTier": 3,
+        "offensiveStrength": 229,
+        "defensiveStrength": 113
+    },
+    {
+        "sport": "Soccer",
+        "name": "Leon Bailey",
+        "starTier": 3,
+        "offensiveStrength": 226,
+        "defensiveStrength": 104
+    },
+    {
+        "sport": "Soccer",
+        "name": "Alexandre Lacazette",
+        "starTier": 3,
+        "offensiveStrength": 220,
+        "defensiveStrength": 116
+    },
+    {
+        "sport": "Soccer",
+        "name": "Son Heung-min",
+        "starTier": 3,
+        "offensiveStrength": 223,
+        "defensiveStrength": 90
+    },
+    {
+        "sport": "Soccer",
+        "name": "Jonathan David",
+        "starTier": 3,
+        "offensiveStrength": 206,
+        "defensiveStrength": 133
+    },
+    {
+        "sport": "Soccer",
+        "name": "Leroy Sane",
+        "starTier": 3,
+        "offensiveStrength": 209,
+        "defensiveStrength": 96
+    },
+    {
+        "sport": "Soccer",
+        "name": "Antoine Griezmann",
+        "starTier": 3,
+        "offensiveStrength": 195,
+        "defensiveStrength": 161
+    },
+    {
+        "sport": "Soccer",
+        "name": "Victor Osimhen",
+        "starTier": 3,
+        "offensiveStrength": 217,
+        "defensiveStrength": 59
+    },
+    {
+        "sport": "Soccer",
+        "name": "Ermedin Demirovic",
+        "starTier": 3,
+        "offensiveStrength": 192,
+        "defensiveStrength": 124
+    },
+    {
+        "sport": "Soccer",
+        "name": "Niclas F\u00fcllkrug",
+        "starTier": 3,
+        "offensiveStrength": 215,
+        "defensiveStrength": 34
+    },
+    {
+        "sport": "Soccer",
+        "name": "Kai Havertz",
+        "starTier": 2,
+        "offensiveStrength": 161,
+        "defensiveStrength": 209
+    },
+    {
+        "sport": "Soccer",
+        "name": "Matheus Cunha",
+        "starTier": 2,
+        "offensiveStrength": 181,
+        "defensiveStrength": 178
+    },
+    {
+        "sport": "Soccer",
+        "name": "Eberechi Eze",
+        "starTier": 2,
+        "offensiveStrength": 147,
+        "defensiveStrength": 229
+    },
+    {
+        "sport": "Soccer",
+        "name": "Hakan Calhanogllu",
+        "starTier": 2,
+        "offensiveStrength": 85,
+        "defensiveStrength": 271
+    },
+    {
+        "sport": "Soccer",
+        "name": "Christian Pulisic",
+        "starTier": 2,
+        "offensiveStrength": 167,
+        "defensiveStrength": 175
+    },
+    {
+        "sport": "Soccer",
+        "name": "Nicolas Gonzalez",
+        "starTier": 2,
+        "offensiveStrength": 144,
+        "defensiveStrength": 206
+    },
+    {
+        "sport": "Soccer",
+        "name": "Julian Brandt",
+        "starTier": 2,
+        "offensiveStrength": 184,
+        "defensiveStrength": 110
+    },
+    {
+        "sport": "Soccer",
+        "name": "Dusan Vlahovic",
+        "starTier": 2,
+        "offensiveStrength": 203,
+        "defensiveStrength": 36
+    },
+    {
+        "sport": "Soccer",
+        "name": "Jarrod Bowen",
+        "starTier": 2,
+        "offensiveStrength": 141,
+        "defensiveStrength": 201
+    },
+    {
+        "sport": "Soccer",
+        "name": "Anthony Gordon",
+        "starTier": 2,
+        "offensiveStrength": 135,
+        "defensiveStrength": 217
+    },
+    {
+        "sport": "Soccer",
+        "name": "Viktor Tsyhankov",
+        "starTier": 2,
+        "offensiveStrength": 138,
+        "defensiveStrength": 192
+    },
+    {
+        "sport": "Soccer",
+        "name": "Omar Marmoush",
+        "starTier": 2,
+        "offensiveStrength": 178,
+        "defensiveStrength": 135
+    },
+    {
+        "sport": "Soccer",
+        "name": "Takumi Minamino",
+        "starTier": 2,
+        "offensiveStrength": 124,
+        "defensiveStrength": 212
+    },
+    {
+        "sport": "Soccer",
+        "name": "Chris Wood",
+        "starTier": 2,
+        "offensiveStrength": 189,
+        "defensiveStrength": 42
+    },
+    {
+        "sport": "Soccer",
+        "name": "Ante Budimir",
+        "starTier": 2,
+        "offensiveStrength": 175,
+        "defensiveStrength": 102
+    },
+    {
+        "sport": "Soccer",
+        "name": "Brennan Johnson",
+        "starTier": 2,
+        "offensiveStrength": 133,
+        "defensiveStrength": 169
+    },
+    {
+        "sport": "Soccer",
+        "name": "Bryan Mbeumo",
+        "starTier": 2,
+        "offensiveStrength": 164,
+        "defensiveStrength": 107
+    },
+    {
+        "sport": "Soccer",
+        "name": "Xavi Simons",
+        "starTier": 2,
+        "offensiveStrength": 121,
+        "defensiveStrength": 172
+    },
+    {
+        "sport": "Soccer",
+        "name": "Vincenzo Grifo",
+        "starTier": 2,
+        "offensiveStrength": 102,
+        "defensiveStrength": 186
+    },
+    {
+        "sport": "Soccer",
+        "name": "Gerard Moreno",
+        "starTier": 2,
+        "offensiveStrength": 130,
+        "defensiveStrength": 152
+    },
+    {
+        "sport": "Soccer",
+        "name": "Rodri",
+        "starTier": 2,
+        "offensiveStrength": 62,
+        "defensiveStrength": 268
+    },
+    {
+        "sport": "Soccer",
+        "name": "Kevin St\u00f6ger",
+        "starTier": 2,
+        "offensiveStrength": 93,
+        "defensiveStrength": 240
+    },
+    {
+        "sport": "Soccer",
+        "name": "Leon Goretzka",
+        "starTier": 2,
+        "offensiveStrength": 59,
+        "defensiveStrength": 266
+    },
+    {
+        "sport": "Soccer",
+        "name": "Exequiel Palacios",
+        "starTier": 2,
+        "offensiveStrength": 31,
+        "defensiveStrength": 288
+    },
+    {
+        "sport": "Soccer",
+        "name": "Mahdi Camara",
+        "starTier": 2,
+        "offensiveStrength": 42,
+        "defensiveStrength": 285
+    },
+    {
+        "sport": "Soccer",
+        "name": "Nico Williams",
+        "starTier": 2,
+        "offensiveStrength": 118,
+        "defensiveStrength": 144
+    },
+    {
+        "sport": "Soccer",
+        "name": "Sergio Arribas",
+        "starTier": 2,
+        "offensiveStrength": 90,
+        "defensiveStrength": 237
+    },
+    {
+        "sport": "Soccer",
+        "name": "Lorenzo Pellegrini",
+        "starTier": 2,
+        "offensiveStrength": 70,
+        "defensiveStrength": 257
+    },
+    {
+        "sport": "Soccer",
+        "name": "Jeremie Frimpong",
+        "starTier": 2,
+        "offensiveStrength": 116,
+        "defensiveStrength": 141
+    },
+    {
+        "sport": "Soccer",
+        "name": "Bruno Fernandes",
+        "starTier": 2,
+        "offensiveStrength": 56,
+        "defensiveStrength": 260
+    },
+    {
+        "sport": "Soccer",
+        "name": "Rocco Reitz",
+        "starTier": 1,
+        "offensiveStrength": 28,
+        "defensiveStrength": 291
+    },
+    {
+        "sport": "Soccer",
+        "name": "Maximilian Mittelst\u00e4dt",
+        "starTier": 1,
+        "offensiveStrength": 22,
+        "defensiveStrength": 297
+    },
+    {
+        "sport": "Soccer",
+        "name": "Hwang Hee-chan",
+        "starTier": 1,
+        "offensiveStrength": 113,
+        "defensiveStrength": 138
+    },
+    {
+        "sport": "Soccer",
+        "name": "Marcus Thuram",
+        "starTier": 1,
+        "offensiveStrength": 155,
+        "defensiveStrength": 93
+    },
+    {
+        "sport": "Soccer",
+        "name": "Romain Del Castillo",
+        "starTier": 1,
+        "offensiveStrength": 99,
+        "defensiveStrength": 226
+    },
+    {
+        "sport": "Soccer",
+        "name": "Mohammed Kudus",
+        "starTier": 1,
+        "offensiveStrength": 51,
+        "defensiveStrength": 263
+    },
+    {
+        "sport": "Soccer",
+        "name": "Wissam Ben Yedder",
+        "starTier": 1,
+        "offensiveStrength": 172,
+        "defensiveStrength": 53
+    },
+    {
+        "sport": "Soccer",
+        "name": "Alexis Mac Allister",
+        "starTier": 1,
+        "offensiveStrength": 25,
+        "defensiveStrength": 294
+    },
+    {
+        "sport": "Soccer",
+        "name": "Marvin Ducksch",
+        "starTier": 1,
+        "offensiveStrength": 169,
+        "defensiveStrength": 39
+    },
+    {
+        "sport": "Soccer",
+        "name": "Julian A\u0081lvarez",
+        "starTier": 1,
+        "offensiveStrength": 127,
+        "defensiveStrength": 87
+    },
+    {
+        "sport": "Soccer",
+        "name": "Benjamin Bourigeaud",
+        "starTier": 1,
+        "offensiveStrength": 82,
+        "defensiveStrength": 223
+    },
+    {
+        "sport": "Soccer",
+        "name": "Savio",
+        "starTier": 1,
+        "offensiveStrength": 87,
+        "defensiveStrength": 198
+    },
+    {
+        "sport": "Soccer",
+        "name": "Teun Koopmeiners",
+        "starTier": 1,
+        "offensiveStrength": 96,
+        "defensiveStrength": 184
+    },
+    {
+        "sport": "Soccer",
+        "name": "Aleksandr Golovin",
+        "starTier": 1,
+        "offensiveStrength": 48,
+        "defensiveStrength": 254
+    },
+    {
+        "sport": "Soccer",
+        "name": "Joao Palhinha",
+        "starTier": 1,
+        "offensiveStrength": 20,
+        "defensiveStrength": 300
+    },
+    {
+        "sport": "Soccer",
+        "name": "Maximilian Beier",
+        "starTier": 1,
+        "offensiveStrength": 107,
+        "defensiveStrength": 118
+    },
+    {
+        "sport": "Soccer",
+        "name": "Bernardo Silva",
+        "starTier": 1,
+        "offensiveStrength": 53,
+        "defensiveStrength": 243
+    },
+    {
+        "sport": "Soccer",
+        "name": "Borja Mayoral",
+        "starTier": 1,
+        "offensiveStrength": 152,
+        "defensiveStrength": 62
+    },
+    {
+        "sport": "Soccer",
+        "name": "Declan Rice",
+        "starTier": 1,
+        "offensiveStrength": 36,
+        "defensiveStrength": 283
+    },
+    {
+        "sport": "Soccer",
+        "name": "Willian Jose",
+        "starTier": 1,
+        "offensiveStrength": 158,
+        "defensiveStrength": 45
+    },
+    {
+        "sport": "Soccer",
+        "name": "Rafael Leao",
+        "starTier": 1,
+        "offensiveStrength": 110,
+        "defensiveStrength": 85
+    },
+    {
+        "sport": "Soccer",
+        "name": "James Maddison",
+        "starTier": 1,
+        "offensiveStrength": 73,
+        "defensiveStrength": 220
+    },
+    {
+        "sport": "Soccer",
+        "name": "Kieran Trippier",
+        "starTier": 1,
+        "offensiveStrength": 39,
+        "defensiveStrength": 274
+    },
+    {
+        "sport": "Soccer",
+        "name": "Khvicha Kvaratskhelia",
+        "starTier": 1,
+        "offensiveStrength": 79,
+        "defensiveStrength": 195
+    },
+    {
+        "sport": "Soccer",
+        "name": "Alex Baena",
+        "starTier": 1,
+        "offensiveStrength": 76,
+        "defensiveStrength": 181
+    },
+    {
+        "sport": "Soccer",
+        "name": "Bruno Guimaraes",
+        "starTier": 1,
+        "offensiveStrength": 34,
+        "defensiveStrength": 280
+    },
+    {
+        "sport": "Soccer",
+        "name": "Mario Pasalic",
+        "starTier": 1,
+        "offensiveStrength": 68,
+        "defensiveStrength": 215
+    },
+    {
+        "sport": "Soccer",
+        "name": "Iago Aspas",
+        "starTier": 1,
+        "offensiveStrength": 104,
+        "defensiveStrength": 73
+    },
+    {
+        "sport": "Soccer",
+        "name": "Vitinha",
+        "starTier": 1,
+        "offensiveStrength": 45,
+        "defensiveStrength": 251
+    },
+    {
+        "sport": "Soccer",
+        "name": "Joao Pedro",
+        "starTier": 1,
+        "offensiveStrength": 65,
+        "defensiveStrength": 203
+    }
+]
