@@ -92,7 +92,7 @@
     },
     {
         "sport": "Soccer",
-        "name": "Lautaro Marti\u00adnez",
+        "name": "Lautaro Martinez",
         "starTier": 4,
         "offensiveStrength": 260,
         "defensiveStrength": 158
@@ -197,14 +197,14 @@
     },
     {
         "sport": "Soccer",
-        "name": "\u00c3\u0081lex Grimaldo",
+        "name": "Alex Grimaldo",
         "starTier": 3,
         "offensiveStrength": 186,
         "defensiveStrength": 234
     },
     {
         "sport": "Soccer",
-        "name": "\u00c3\u0081lvaro Morata",
+        "name": "Alvaro Morata",
         "starTier": 3,
         "offensiveStrength": 237,
         "defensiveStrength": 76
@@ -274,7 +274,7 @@
     },
     {
         "sport": "Soccer",
-        "name": "Niclas F\u00fcllkrug",
+        "name": "Niclas Füllkrug",
         "starTier": 3,
         "offensiveStrength": 215,
         "defensiveStrength": 34
@@ -428,7 +428,7 @@
     },
     {
         "sport": "Soccer",
-        "name": "Kevin St\u00f6ger",
+        "name": "Kevin Stöger",
         "starTier": 2,
         "offensiveStrength": 93,
         "defensiveStrength": 240
@@ -498,7 +498,7 @@
     },
     {
         "sport": "Soccer",
-        "name": "Maximilian Mittelst\u00e4dt",
+        "name": "Maximilian Mittelstädt",
         "starTier": 1,
         "offensiveStrength": 22,
         "defensiveStrength": 297
@@ -554,7 +554,7 @@
     },
     {
         "sport": "Soccer",
-        "name": "Julian A\u0081lvarez",
+        "name": "Julian Alvarez",
         "starTier": 1,
         "offensiveStrength": 127,
         "defensiveStrength": 87

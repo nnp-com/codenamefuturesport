@@ -89,7 +89,7 @@ const LockerRoomAdmin: React.FC = () => {
   return (
     <div className="p-4">
       <div className="mb-4">
-        <h1 className="text-3xl font-bold mb-2">Admin Panel</h1>
+        <h1 className="text-3xl font-bold mb-2">Locker Room: Admin Panel</h1>
         <div>
           <button
             onClick={() => router.push('/lobby')}

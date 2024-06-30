@@ -12,6 +12,7 @@ const LockerRoom: React.FC = () => {
   const {
     teamMembers,
     loadUserTeam,
+    availableStarTiers,
   } = useTeamSelectionStore();
 
   const { user, enterChampionship } = useAuthStore();
@@ -52,10 +53,25 @@ const LockerRoom: React.FC = () => {
     router.push('/lobby');
   };
 
+  const totalOffensiveStrength = teamMembers.reduce((sum, player) => sum + player.offensiveStrength, 0);
+  const totalDefensiveStrength = teamMembers.reduce((sum, player) => sum + player.defensiveStrength, 0);
+
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Your Current Team</h1>
-
+      <div className="flex justify-between items-start mb-4">
+        <h1 className="text-2xl font-bold">Locker Room: Your Current Team</h1>
+        <div className="text-right">
+          <div className="text-xl font-semibold">
+            Available Stars ⭐: {availableStarTiers} / 14
+          </div>
+          <div className="text-xl font-semibold text-green-500">
+            Total OFF: {totalOffensiveStrength}
+          </div>
+          <div className="text-xl font-semibold text-red-500">
+            Total DEF: {totalDefensiveStrength}
+          </div>
+        </div>
+      </div>
       <div className="flex flex-wrap justify-center mb-4">
         {hasTeam ? (
           teamMembers.map((member) => (
