@@ -86,7 +86,7 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ currentMatch }) =
           <div className="bg-yellow-100 border border-yellow-300 p-4 rounded-lg w-full">
             <h4 className="font-semibold mb-2">Timeline</h4>
             {currentMatch.currentRound.events.map((event, index) => (
-              <div key={index} className="mb-2">
+              <div key={index} className={`mb-2 ${event.points > 0 ? 'text-green-600' : 'text-red-600'}`}>
                 <span className="font-bold">{event.points} Points</span> - {event.description}
               </div>
             ))}

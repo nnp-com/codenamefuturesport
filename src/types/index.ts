@@ -1,7 +1,9 @@
+// types/index.ts
+
 export interface Player {
   id: string;
   name: string;
-  sport: "Basketball" | "Baseball" | "Soccer";
+  sport: Sport;
   starTier: number;
   offensiveStrength: number;
   defensiveStrength: number;
@@ -24,6 +26,7 @@ export interface User {
 
 export interface MatchPlayer extends User {
   roundsWon: boolean[];
+  totalPoints: number;
 }
 
 export interface RoundEvent {
@@ -43,6 +46,22 @@ export interface Match {
   player1: MatchPlayer;
   player2: MatchPlayer;
   currentRound: Round;
+}
+
+export interface FlavorTextItem {
+  id: number;
+  event: string;
+  points: number;
+  text: string;
+}
+
+export interface FlavorTextCategory {
+  successfulAttack: FlavorTextItem[];
+  successfulDefense: FlavorTextItem[];
+}
+
+export interface FlavorTextData {
+  [key: string]: FlavorTextCategory;
 }
 
 export interface MatchMock {

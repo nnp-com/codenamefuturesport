@@ -2,14 +2,29 @@
 
 import React, { useEffect, useState } from 'react';
 import { fetchMockChampionshipData } from '../../data/fetchMockData';
-import { Match } from '../../types/index';
+import { Match, TeamMember, RoundEvent, Sport } from '../../types/index';
 import ChampionshipMatch from './DemoChampionshipMatch';
 import useAuthStore from '../../stores/useAuthStore';
+import { getFlavorText, getRandomEvent } from '../../utils/flavorTextUtils';
 
 const ChampionshipScreen: React.FC = () => {
   const { user } = useAuthStore();
   const [currentMatch, setCurrentMatch] = useState<Match | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const generateMockRoundEvents = (attacker: TeamMember, defender: TeamMember): RoundEvent[] => {
+    const events: RoundEvent[] = [];
+    for (let i = 0; i < 4; i++) {  // Generate 4 events per round
+      const event = getRandomEvent(attacker.sport);
+      const isSuccessful = Math.random() > 0.5;  // 50% chance of success
+      const { text, points } = getFlavorText(attacker.sport, defender.sport, isSuccessful, event);
+      events.push({
+        points: isSuccessful ? points : 0,
+        description: text.replace('[Player One]', attacker.name).replace('[Player Two]', defender.name)
+      });
+    }
+    return events;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +32,18 @@ const ChampionshipScreen: React.FC = () => {
         console.log('Fetching data...');
         const { mockMatch } = await fetchMockChampionshipData();
         console.log('Data fetched:', mockMatch);
-        setCurrentMatch(mockMatch);
+
+        // Generate new events using the flavor text
+        const newEvents = generateMockRoundEvents(mockMatch.currentRound.attacker, mockMatch.currentRound.defender);
+        const updatedMatch: Match = {
+          ...mockMatch,
+          currentRound: {
+            ...mockMatch.currentRound,
+            events: newEvents
+          }
+        };
+
+        setCurrentMatch(updatedMatch);
       } catch (error) {
         console.error('Error fetching mock championship data:', error);
       } finally {

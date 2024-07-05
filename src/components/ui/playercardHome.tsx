@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface Player {
   id: string;
@@ -13,7 +14,7 @@ interface PlayerCardProps {
   player: Player | null;
   position: number;
   isActive?: boolean;
-  className?: string; // Add this prop for additional customization
+  className?: string;
 }
 
 const PlayerCard: React.FC<PlayerCardProps> = ({ player, position, isActive = false, className = '' }) => {
@@ -30,11 +31,24 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, position, isActive = fa
     }
   };
 
+  const getSportImage = (sport: string) => {
+    switch (sport) {
+      case 'Baseball':
+        return '/images/Baseball.png';
+      case 'Basketball':
+        return '/images/Basketball.png';
+      case 'Soccer':
+        return '/images/Soccer.png';
+      default:
+        return '/images/BotUser.png';
+    }
+  };
+
   const cardClasses = `
-    w-48 h-[200px] border-4 border-yellow-500 rounded-lg shadow-lg p-3 
+    w-48 h-[290px] border-4 border-yellow-500 rounded-lg shadow-lg p-3 
     bg-gradient-to-b from-white to-gray-100 overflow-hidden
     ${isActive ? 'ring-2 ring-blue-500' : ''}
-    ${className} // Add the custom className here
+    ${className}
   `;
 
   if (!player) {
@@ -54,6 +68,15 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, position, isActive = fa
           <div className="flex justify-between items-center mb-2">
             <span className="font-bold text-lg">⭐ {player.starTier}</span>
             {getSportIcon(player.sport)}
+          </div>
+          <div className="w-full h-32 relative mb-2"> {/* Increased height for 4:3 ratio */}
+            <Image
+              src={getSportImage(player.sport)}
+              alt={`${player.sport} player`}
+              layout="fill"
+              objectFit="contain"
+              className="rounded"
+            />
           </div>
           <h3 className="font-bold text-sm mb-1 truncate">{player.name}</h3>
           <p className="text-gray-600 text-xs mb-2">{player.sport}</p>

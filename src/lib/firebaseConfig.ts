@@ -63,7 +63,7 @@ const checkAdminStatus = async (userId: string) => {
 
 // CURRENT ADMIN with Email
 const setAdminStatus = async (userId: string, email: string) => {
-  const adminEmails = ['simon@nevernotplay.com']; 
+  const adminEmails = ['malcolm@nevernotplay.com']; 
   const isAdmin = adminEmails.includes(email);
   const userDoc = doc(db, 'teams', userId);
   
