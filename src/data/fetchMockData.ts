@@ -1,6 +1,6 @@
 import { collection, getDocs } from 'firebase/firestore';
 import { db, auth } from '../lib/firebaseConfig';
-import { User, MatchPlayer, Match, TeamMember, Round, RoundEvent } from '../types/index';
+import { User, MatchPlayer, MatchD, TeamMember, Round, RoundEvent } from '../types/index';
 
 const getRandomOpponent = (users: User[], excludeUserId: string): User => {
   const filteredUsers = users.filter(user => user.uid !== excludeUserId);
@@ -27,7 +27,7 @@ const generateMockRoundEvents = (attacker: TeamMember, defender: TeamMember): Ro
   return events;
 };
 
-export const fetchMockChampionshipData = async (): Promise<{ mockMatch: Match; users: User[] }> => {
+export const fetchMockChampionshipData = async (): Promise<{ mockMatch: MatchD; users: User[] }> => {
   try {
     console.log('Fetching mock championship data...');
     const querySnapshot = await getDocs(collection(db, 'teams'));
@@ -39,6 +39,10 @@ export const fetchMockChampionshipData = async (): Promise<{ mockMatch: Match; u
       championshipWins: doc.data().championshipWins || 0,
       totalPoints: doc.data().totalPoints || 0,
       legacyPoints: doc.data().legacyPoints || 0,
+      members: doc.data().members || [],  // Ensure members property is included
+      bot: doc.data().bot || false,       // Ensure bot property is included
+      email: doc.data().email || '',      // Ensure email property is included
+      isAdmin: doc.data().isAdmin || false // Ensure isAdmin property is included
     }));
 
     console.log('Users fetched:', users);
@@ -63,8 +67,8 @@ export const fetchMockChampionshipData = async (): Promise<{ mockMatch: Match; u
 
     const opponent = getRandomOpponent(users, loggedInUser.uid);
 
-    const attacker = getRandomTeamMember(loggedInUser.team);
-    const defender = getRandomTeamMember(opponent.team);
+    const attacker = getRandomTeamMember(loggedInUser.members);
+    const defender = getRandomTeamMember(opponent.members);
 
     const mockRound: Round = {
       number: 1,
@@ -74,7 +78,7 @@ export const fetchMockChampionshipData = async (): Promise<{ mockMatch: Match; u
       flavorText: `${attacker.name} is facing off against ${defender.name} in an intense ${attacker.sport} showdown!`
     };
 
-    const mockMatch: Match = {
+    const mockMatch: MatchD = {
       player1: {
         ...loggedInUser,
         roundsWon: [true, false, true, false, false, false, false, false, false, false, false, false],

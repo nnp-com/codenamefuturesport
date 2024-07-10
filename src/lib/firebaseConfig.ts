@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, doc, setDoc, getDoc, collection, addDoc, deleteDoc, getDocs, updateDoc, query, where } from 'firebase/firestore';
-import { TeamMember, Match, MatchResult } from '../types/index';
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, deleteDoc, getDocs, updateDoc, query, where, Timestamp, increment, writeBatch } from 'firebase/firestore';
+import { TeamMember, MatchResult, Attempt, OngoingGame, AttemptResult, ChampionshipState, User } from '../types/index';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -32,15 +32,17 @@ const initializeUserInFirestore = async (userId: string, email: string, displayN
       totalPoints: 0,
       legacyPoints: 0,
       bot: false,
+      timeOut: true,
     });
   }
 };
 
 const getUserTeamData = async (userId: string) => {
-  const userDoc = doc(db, 'teams', userId);
-  const userSnapshot = await getDoc(userDoc);
-
-  return userSnapshot.exists() ? userSnapshot.data() : null;
+  const userDoc = await getDoc(doc(db, 'teams', userId));
+  if (userDoc.exists()) {
+    return { uid: userDoc.id, ...userDoc.data() } as User;
+  }
+  return null;
 };
 
 const updateUserTeamData = async (userId: string, teamMembers: TeamMember[]) => {
@@ -63,7 +65,7 @@ const checkAdminStatus = async (userId: string) => {
 
 // CURRENT ADMIN with Email
 const setAdminStatus = async (userId: string, email: string) => {
-  const adminEmails = ['malcolm@nevernotplay.com']; 
+  const adminEmails = ['simon@nevernotplay.com']; 
   const isAdmin = adminEmails.includes(email);
   const userDoc = doc(db, 'teams', userId);
   
@@ -103,12 +105,7 @@ const enterChampionship = async (userId: string) => {
   }
 };
 
-const getEnteredPlayers = async () => {
-  const enteredCollection = collection(db, 'enteredChampionship');
-  const enteredSnapshot = await getDocs(enteredCollection);
-  
-  return enteredSnapshot.docs.map(doc => doc.data());
-};
+
 
 const getBotUsers = async () => {
   const q = query(collection(db, 'teams'), where('bot', '==', true));
@@ -151,53 +148,113 @@ const deleteBotUser = async (userId: string) => {
 };
 
 const createOngoingGame = async (player1Id: string, player2Id: string): Promise<string> => {
-  const ongoingGamesCollection = collection(db, 'ongoingGames');
-  const gameDoc = await addDoc(ongoingGamesCollection, {
-    player1Id,
-    player2Id,
-    startTime: new Date(),
-    roundsCompleted: 0,
-  });
-  return gameDoc.id;
+  console.log('Creating ongoing game for players:', player1Id, player2Id);
+  if (!player1Id || !player2Id) {
+    console.error('Invalid player IDs:', player1Id, player2Id);
+    throw new Error('Invalid player IDs');
+  }
+
+  try {
+    const ongoingGamesCollection = collection(db, 'ongoingGames');
+    const gameDoc = await addDoc(ongoingGamesCollection, {
+      player1Id,
+      player2Id,
+      startTime: Timestamp.now(),
+      currentAttempt: 0,
+      currentRound: 1,
+      player1Score: 0,
+      player2Score: 0,
+      attempts: {},
+      isComplete: false,
+      player1IsAttacker: true, // Player 1 starts as attacker
+      activeAttacker: '',
+      activeDefender: '',
+      arena: `Arena ${(await getDocs(ongoingGamesCollection)).size + 1}`
+    });
+    console.log('Created ongoing game with ID:', gameDoc.id);
+    return gameDoc.id;
+  } catch (error) {
+    console.error('Error creating ongoing game:', error);
+    throw error;
+  }
 };
 
-const updateOngoingGame = async (gameId: string, roundData: any) => {
+const getEnteredPlayers = async () => {
+  const enteredCollection = collection(db, 'enteredChampionship');
+  const enteredSnapshot = await getDocs(enteredCollection);
+  
+  const players = enteredSnapshot.docs.map(doc => {
+    const data = doc.data();
+    return { ...data, uid: doc.id };
+  });
+  return players;
+};
+
+const updateOngoingGame = async (gameId: string, attempt: Attempt) => {
   const gameDoc = doc(db, 'ongoingGames', gameId);
+  const gameData = await getOngoingGame(gameId);
+
+  if (!gameData) {
+    throw new Error(`No game data found for gameId: ${gameId}`);
+  }
+
+  const playerScoreField = attempt.attackingPlayerId === gameData.player1Id ? 'player1Score' : 'player2Score';
+
   await updateDoc(gameDoc, {
-    [`rounds.${roundData.roundNumber}`]: roundData,
-    roundsCompleted: roundData.roundNumber,
+    currentAttempt: attempt.attemptNumber,
+    currentRound: attempt.roundNumber,
+    [`attempts.${attempt.attemptId}`]: attempt,
+    [playerScoreField]: increment(attempt.result.points),
+  });
+};
+
+const updatePlayerStats = async (playerId: string, score: number, won: boolean) => {
+  const playerDoc = doc(db, 'teams', playerId);
+  await updateDoc(playerDoc, {
+    totalPoints: increment(score),
+    legacyPoints: increment(score),
+    championshipWins: increment(won ? 1 : 0),
   });
 };
 
 const completeGame = async (gameId: string, matchResult: MatchResult) => {
   const gameDoc = doc(db, 'ongoingGames', gameId);
-  const matchHistoryDoc = doc(db, 'matchHistory', gameId);
 
-  // Move the game data to match history
-  const gameData = (await getDoc(gameDoc)).data();
-  await setDoc(matchHistoryDoc, {
-    ...gameData,
-    ...matchResult,
-    endTime: new Date(),
+  // Mark the game as complete
+  await updateDoc(gameDoc, { 
+    isComplete: true,
+    endTime: Timestamp.now(),
+    winner: matchResult.winner,
+    player1TotalScore: matchResult.player1TotalScore,
+    player2TotalScore: matchResult.player2TotalScore,
   });
-
-  // Remove from ongoing games
-  await deleteDoc(gameDoc);
 
   // Update player stats
-  await updatePlayerStats(matchResult.player1Id, matchResult.player1Score, matchResult.winner === matchResult.player1Id);
-  await updatePlayerStats(matchResult.player2Id, matchResult.player2Score, matchResult.winner === matchResult.player2Id);
+  await updatePlayerStats(matchResult.player1Id, matchResult.player1TotalScore, matchResult.winner === matchResult.player1Id);
+  await updatePlayerStats(matchResult.player2Id, matchResult.player2TotalScore, matchResult.winner === matchResult.player2Id);
 };
 
-const updatePlayerStats = async (playerId: string, score: number, won: boolean) => {
-  const playerDoc = doc(db, 'teams', playerId);
-  const playerData = (await getDoc(playerDoc)).data();
-
-  await updateDoc(playerDoc, {
-    totalPoints: (playerData?.totalPoints || 0) + score,
-    legacyPoints: (playerData?.legacyPoints || 0) + score,
-    championshipWins: won ? (playerData?.championshipWins || 0) + 1 : (playerData?.championshipWins || 0),
+const addMatchToHistory = async (matchResult: MatchResult) => {
+  const matchHistoryCollection = collection(db, 'matchHistory');
+  await addDoc(matchHistoryCollection, {
+    ...matchResult,
+    timestamp: Timestamp.now(),
   });
+};
+
+export const getOngoingGame = async (gameId: string): Promise<OngoingGame | null> => {
+  const gameDoc = await getDoc(doc(db, 'ongoingGames', gameId));
+  if (gameDoc.exists()) {
+    return { id: gameDoc.id, ...gameDoc.data() } as OngoingGame;
+  }
+  return null;
+};
+
+const getOngoingGames = async (): Promise<OngoingGame[]> => {
+  const gamesCollection = collection(db, 'ongoingGames');
+  const q = query(gamesCollection, where('isComplete', '==', false));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as OngoingGame));
 };
 
 const getMatchHistory = async (matchId: string) => {
@@ -205,6 +262,92 @@ const getMatchHistory = async (matchId: string) => {
   const matchSnapshot = await getDoc(matchDoc);
   return matchSnapshot.exists() ? matchSnapshot.data() : null;
 };
+
+const getAllCompletedMatches = async (): Promise<MatchResult[]> => {
+  const q = query(collection(db, 'matchHistory'));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(doc => doc.data() as MatchResult);
+};
+
+const updateChampionshipState = async (state: ChampionshipState) => {
+  const stateDoc = doc(db, 'championshipState', 'current');
+  await setDoc(stateDoc, state, { merge: true });
+};
+
+
+const getChampionshipState = async (): Promise<ChampionshipState> => {
+  const stateDoc = await getDoc(doc(db, 'championshipState', 'current'));
+  if (stateDoc.exists()) {
+    return stateDoc.data() as ChampionshipState;
+  } else {
+    // Return a default state if no document exists
+    return {
+      currentStage: 0,
+      matchesPlayed: [], // Default to an empty array of MatchResult objects
+      remainingMatches: {}, // Default to an empty object
+      isFinished: false,
+      standings: []
+    };
+  }
+};
+
+const getChampionshipStandings = async (): Promise<{ userId: string, points: number }[]> => {
+  const players = await getEnteredPlayers();
+  const standings: { userId: string, points: number }[] = players.map(player => ({
+    userId: player.uid, // Changed from player.userId to player.uid
+    points: 0,
+  }));
+
+  const completedMatches = await getAllCompletedMatches();
+
+  for (const match of completedMatches) {
+    const player1Standing = standings.find(s => s.userId === match.player1Id);
+    const player2Standing = standings.find(s => s.userId === match.player2Id);
+
+    if (player1Standing) player1Standing.points += match.player1TotalScore;
+    if (player2Standing) player2Standing.points += match.player2TotalScore;
+  }
+
+  return standings.sort((a, b) => b.points - a.points);
+};
+
+const deleteOngoingGame = async (gameId: string): Promise<void> => {
+  await deleteDoc(doc(db, 'ongoingGames', gameId));
+};
+
+const clearOngoingGames = async (): Promise<void> => {
+  const ongoingGamesRef = collection(db, 'ongoingGames');
+  const ongoingGamesSnapshot = await getDocs(ongoingGamesRef);
+  const batch = writeBatch(db);
+
+  ongoingGamesSnapshot.docs.forEach((doc) => {
+      batch.delete(doc.ref);
+  });
+
+  await batch.commit();
+};
+
+const clearMatchHistory = async (): Promise<void> => {
+  const matchHistoryRef = collection(db, 'matchHistory');
+  const matchHistorySnapshot = await getDocs(matchHistoryRef);
+  const batch = writeBatch(db);
+
+  matchHistorySnapshot.docs.forEach((doc) => {
+    batch.delete(doc.ref);
+  });
+
+  await batch.commit();
+};
+
+const resetPlayerStats = async (playerId: string): Promise<void> => {
+  const playerRef = doc(db, 'teams', playerId);
+  await updateDoc(playerRef, {
+    championshipWins: 0,
+    totalPoints: 0,
+    legacyPoints: 0,
+  });
+};
+
 
 export {
   auth,
@@ -221,6 +364,19 @@ export {
   getBotUsers,
   createBotUser,
   deleteBotUser,
+  createOngoingGame,
+  updateOngoingGame,
+  completeGame,
+  addMatchToHistory,
+  getMatchHistory,
+  getOngoingGames,
+  getAllCompletedMatches,
+  getChampionshipStandings,
+  updatePlayerStats,
+  updateChampionshipState,
+  getChampionshipState,
+  deleteOngoingGame,
+  clearMatchHistory,
+  resetPlayerStats,
+  clearOngoingGames,
 };
-
-

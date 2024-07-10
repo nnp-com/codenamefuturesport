@@ -29,27 +29,27 @@
       "successfulDefense": [
         {
           "id": 1,
-          "event": "goal",
-          "points": 65,
-          "text": "[Player Two] blocked the shot like a pro, leaving [Player One] frustrated. No points!"
+          "event": "block",
+          "points": 0,
+          "text": "[Player Two] blocked the shot like a pro, leaving [Player One] frustrated. No points! Better luck next time!"
         },
         {
           "id": 2,
-          "event": "goal",
-          "points": 65,
-          "text": "An epic block by [Player Two]! [Player One]'s shot was denied!"
+          "event": "block",
+          "points": 0,
+          "text": "An epic block by [Player Two]! [Player One]'s shot was denied! So close, yet so far!"
         },
         {
           "id": 3,
-          "event": "assist",
-          "points": 25,
-          "text": "[Player Two] intercepted the pass with a spectacular leap! No assist for [Player One]!"
+          "event": "interception",
+          "points": 0,
+          "text": "[Player Two] intercepted the pass with a spectacular leap! No assist for [Player One]! Keep trying!"
         },
         {
           "id": 4,
-          "event": "pass",
-          "points": 10,
-          "text": "[Player Two] snatched the ball mid-pass. [Player One] loses out on the points!"
+          "event": "steal",
+          "points": 0,
+          "text": "[Player Two] snatched the ball mid-pass. [Player One] loses out on the points! Better luck next time!"
         }
       ]
     },
@@ -83,27 +83,27 @@
       "successfulDefense": [
         {
           "id": 1,
-          "event": "homerun",
-          "points": 50,
-          "text": "[Player Two] leaps and catches the ball at the last moment! No homerun for [Player One]!"
+          "event": "catch",
+          "points": 0,
+          "text": "[Player Two] leaps and catches the ball at the last moment! No homerun for [Player One]! Better luck next time!"
         },
         {
           "id": 2,
-          "event": "triple",
-          "points": 30,
-          "text": "With a swift move, [Player Two] intercepts the ball. [Player One] is denied a triple!"
+          "event": "block",
+          "points": 0,
+          "text": "With a swift move, [Player Two] intercepts the ball. [Player One] is denied a triple! So close!"
         },
         {
           "id": 3,
-          "event": "double",
-          "points": 20,
-          "text": "[Player Two] slides in and stops the ball just in time. No double for [Player One]!"
+          "event": "slide",
+          "points": 0,
+          "text": "[Player Two] slides in and stops the ball just in time. No double for [Player One]! Keep trying!"
         },
         {
           "id": 4,
-          "event": "single",
-          "points": 10,
-          "text": "[Player Two] catches the ball with ease. [Player One] loses the chance for a single!"
+          "event": "stop",
+          "points": 0,
+          "text": "[Player Two] catches the ball with ease. [Player One] loses the chance for a single! Almost had it!"
         }
       ]
     },
@@ -137,27 +137,27 @@
       "successfulDefense": [
         {
           "id": 1,
-          "event": "three-pointer",
-          "points": 30,
-          "text": "[Player Two] blocks the shot just in time! No three-pointer for [Player One]!"
+          "event": "block",
+          "points": 0,
+          "text": "[Player Two] blocks the shot just in time! No three-pointer for [Player One]! Better luck next time!"
         },
         {
           "id": 2,
-          "event": "basket",
-          "points": 15,
-          "text": "A fantastic save by [Player Two]! [Player One] misses the basket."
+          "event": "save",
+          "points": 0,
+          "text": "A fantastic save by [Player Two]! [Player One] misses the basket. So close!"
         },
         {
           "id": 3,
-          "event": "basket",
-          "points": 15,
-          "text": "[Player Two] deflects the ball away! No points for [Player One]."
+          "event": "deflection",
+          "points": 0,
+          "text": "[Player Two] deflects the ball away! No points for [Player One]. Keep trying!"
         },
         {
           "id": 4,
-          "event": "rebound",
-          "points": 10,
-          "text": "[Player Two] snatches the rebound from [Player One]! No points scored."
+          "event": "steal",
+          "points": 0,
+          "text": "[Player Two] snatches the rebound from [Player One]! No points scored. Almost had it!"
         }
       ]
     },
@@ -191,27 +191,27 @@
       "successfulDefense": [
         {
           "id": 1,
-          "event": "goal",
-          "points": 65,
-          "text": "[Player Two] swings the bat and knocks the ball away! No goal for [Player One]!"
+          "event": "swing",
+          "points": 0,
+          "text": "[Player Two] swings the bat and knocks the ball away! No goal for [Player One]! Better luck next time!"
         },
         {
           "id": 2,
-          "event": "assist",
-          "points": 25,
-          "text": "[Player Two] intercepts the assist with a fantastic catch. No points for [Player One]!"
+          "event": "catch",
+          "points": 0,
+          "text": "[Player Two] intercepts the assist with a fantastic catch. No points for [Player One]! So close!"
         },
         {
           "id": 3,
-          "event": "goal",
-          "points": 65,
-          "text": "An incredible stop by [Player Two]! [Player One] can't believe it. No goal!"
+          "event": "stop",
+          "points": 0,
+          "text": "An incredible stop by [Player Two]! [Player One] can't believe it. No goal! Keep trying!"
         },
         {
           "id": 4,
-          "event": "pass",
-          "points": 10,
-          "text": "[Player Two] deflects the pass with the bat. No points for [Player One]!"
+          "event": "deflect",
+          "points": 0,
+          "text": "[Player Two] deflects the pass with the bat. No points for [Player One]! Almost had it!"
         }
       ]
     },
@@ -245,27 +245,27 @@
           "successfulDefense": [
             {
               "id": 1,
-              "event": "homerun",
-              "points": 50,
-              "text": "[Player Two] leaps and catches the ball just before it goes out. No home run for [Player One]!"
+              "event": "catch",
+              "points": 0,
+              "text": "[Player Two] leaps and catches the ball just before it goes out. No home run for [Player One]! Better luck next time!"
             },
             {
               "id": 2,
-              "event": "triple",
-              "points": 30,
-              "text": "With an impressive block, [Player Two] denies [Player One] a triple!"
+              "event": "block",
+              "points": 0,
+              "text": "With an impressive block, [Player Two] denies [Player One] a triple! So close!"
             },
             {
               "id": 3,
-              "event": "double",
-              "points": 20,
-              "text": "[Player Two] intercepts the hit, stopping [Player One] from scoring a double!"
+              "event": "intercept",
+              "points": 0,
+              "text": "[Player Two] intercepts the hit, stopping [Player One] from scoring a double! Keep trying!"
             },
             {
               "id": 4,
-              "event": "single",
-              "points": 10,
-              "text": "[Player Two] quickly grabs the ball, preventing [Player One] from reaching first base. No points!"
+              "event": "grab",
+              "points": 0,
+              "text": "[Player Two] quickly grabs the ball, preventing [Player One] from reaching first base. No points! Almost had it!"
             }
           ]
         },
@@ -299,27 +299,27 @@
           "successfulDefense": [
             {
               "id": 1,
-              "event": "goal",
-              "points": 65,
-              "text": "[Player Two] makes an incredible save, stopping [Player One]'s goal attempt!"
+              "event": "save",
+              "points": 0,
+              "text": "[Player Two] makes an incredible save, stopping [Player One]'s goal attempt! Better luck next time!"
             },
             {
               "id": 2,
-              "event": "assist",
-              "points": 25,
-              "text": "[Player Two] intercepts the assist with a deft move. No points for [Player One]!"
+              "event": "intercept",
+              "points": 0,
+              "text": "[Player Two] intercepts the assist with a deft move. No points for [Player One]! So close!"
             },
             {
               "id": 3,
-              "event": "goal",
-              "points": 65,
-              "text": "A heroic block by [Player Two] denies [Player One] the goal!"
+              "event": "block",
+              "points": 0,
+              "text": "A heroic block by [Player Two] denies [Player One] the goal! Keep trying!"
             },
             {
               "id": 4,
-              "event": "pass",
-              "points": 10,
-              "text": "[Player Two] cuts off the pass with perfect timing. No points for [Player One]!"
+              "event": "cutoff",
+              "points": 0,
+              "text": "[Player Two] cuts off the pass with perfect timing. No points for [Player One]! Almost had it!"
             }
           ]
         },
@@ -353,27 +353,27 @@
           "successfulDefense": [
             {
               "id": 1,
-              "event": "three-pointer",
-              "points": 30,
-              "text": "[Player Two] leaps and blocks the three-pointer! No points for [Player One]!"
+              "event": "block",
+              "points": 0,
+              "text": "[Player Two] leaps and blocks the three-pointer! No points for [Player One]! Try again!"
             },
             {
               "id": 2,
-              "event": "basket",
-              "points": 15,
-              "text": "A powerful block by [Player Two]! [Player One] misses the basket."
+              "event": "block",
+              "points": 0,
+              "text": "A powerful block by [Player Two]! [Player One] misses the basket. Better luck next time!"
             },
             {
               "id": 3,
-              "event": "rebound",
-              "points": 10,
-              "text": "[Player Two] grabs the rebound right out of [Player One]'s hands. No points!"
+              "event": "steal",
+              "points": 0,
+              "text": "[Player Two] grabs the rebound right out of [Player One]'s hands. No points! So close!"
             },
             {
               "id": 4,
-              "event": "basket",
-              "points": 15,
-              "text": "[Player Two] stuffs [Player One]'s shot! No points scored."
+              "event": "block",
+              "points": 0,
+              "text": "[Player Two] stuffs [Player One]'s shot! No points scored. Almost had it!"
             }
           ]
         },
@@ -407,27 +407,81 @@
           "successfulDefense": [
             {
               "id": 1,
-              "event": "homerun",
-              "points": 50,
-              "text": "[Player Two] makes a leaping catch at the fence! No homerun for [Player One]!"
+              "event": "catch",
+              "points": 0,
+              "text": "[Player Two] makes a leaping catch at the fence! No homerun for [Player One]! Better luck next time!"
             },
             {
               "id": 2,
-              "event": "triple",
-              "points": 30,
-              "text": "A diving stop by [Player Two] robs [Player One] of a triple!"
+              "event": "diving stop",
+              "points": 0,
+              "text": "A diving stop by [Player Two] robs [Player One] of a triple! So close!"
             },
             {
               "id": 3,
-              "event": "double",
-              "points": 20,
-              "text": "[Player Two] fields the ball cleanly and prevents the double. No points for [Player One]!"
+              "event": "fielding",
+              "points": 0,
+              "text": "[Player Two] fields the ball cleanly and prevents the double. No points for [Player One]! Almost had it!"
             },
             {
               "id": 4,
-              "event": "single",
+              "event": "throw out",
+              "points": 0,
+              "text": "[Player Two] snags the grounder and throws [Player One] out. No single! Nice try!"
+            }
+          ]
+        },
+        "BasketballAttacking_BaseballDefending": {
+          "successfulAttack": [
+            {
+              "id": 1,
+              "event": "three-pointer",
+              "points": 30,
+              "text": "[Player One] sinks a three-pointer from downtown, leaving [Player Two] helpless. 30 points!"
+            },
+            {
+              "id": 2,
+              "event": "basket",
+              "points": 15,
+              "text": "A smooth layup by [Player One] leaves [Player Two] in the dust. Basket and 15 points!"
+            },
+            {
+              "id": 3,
+              "event": "basket",
+              "points": 15,
+              "text": "[Player One] fakes and scores an easy basket while [Player Two] watches in disbelief. 15 points!"
+            },
+            {
+              "id": 4,
+              "event": "rebound",
               "points": 10,
-              "text": "[Player Two] snags the grounder and throws [Player One] out. No single!"
+              "text": "[Player One] grabs a rebound and puts it back in! 10 points for [Player One]!"
+            }
+          ],
+          "successfulDefense": [
+            {
+              "id": 1,
+              "event": "block",
+              "points": 0,
+              "text": "[Player Two] blocks the shot just in time! No three-pointer for [Player One]! So close!"
+            },
+            {
+              "id": 2,
+              "event": "save",
+              "points": 0,
+              "text": "A fantastic save by [Player Two]! [Player One] misses the basket. Better luck next time!"
+            },
+            {
+              "id": 3,
+              "event": "deflection",
+              "points": 0,
+              "text": "[Player Two] deflects the ball away! No points for [Player One]. Almost had it!"
+            },
+            {
+              "id": 4,
+              "event": "rebound",
+              "points": 0,
+              "text": "[Player Two] snatches the rebound from [Player One]! No points scored. Nice try!"
             }
           ]
         }

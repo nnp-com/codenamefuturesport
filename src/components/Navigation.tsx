@@ -1,16 +1,30 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu } from '@headlessui/react';
 import useAuthStore from '../stores/useAuthStore';
+import { getOngoingGames } from '../lib/firebaseConfig';
 
 const Navbar: React.FC = () => {
     const pathname = usePathname();
     const router = useRouter();
     const { user, isAdmin, signOut } = useAuthStore();
+    const [isInChampionship, setIsInChampionship] = useState(false);
+
+    useEffect(() => {
+        const checkOngoingChampionship = async () => {
+            if (user) {
+                const games = await getOngoingGames();
+                const userGame = games.find(game => game.player1Id === user.uid || game.player2Id === user.uid);
+                setIsInChampionship(!!userGame);
+            }
+        };
+
+        checkOngoingChampionship();
+    }, [user]);
 
     const handleSignOut = async () => {
         try {
@@ -44,11 +58,22 @@ const Navbar: React.FC = () => {
                             >
                                 Locker Room
                             </Link>
-                            {/* Add more navigation links as needed */}
+                            {isInChampionship && (
+                                <Link
+                                    href="/hub"
+                                    className={`${
+                                        pathname === '/hub'
+                                            ? 'border-indigo-500 text-gray-900'
+                                            : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                                    } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                                >
+                                    Championship HUB
+                                </Link>
+                            )}
                         </div>
                     </div>
                     <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                        {user ? (
+                        {user && (
                             <Menu as="div" className="ml-3 relative">
                                 <div className="flex items-center">
                                     <span className="mr-2 text-sm font-medium text-gray-700">
@@ -81,8 +106,6 @@ const Navbar: React.FC = () => {
                                     </Menu.Item>
                                 </Menu.Items>
                             </Menu>
-                        ) : (
-                          <></>
                         )}
                     </div>
                 </div>

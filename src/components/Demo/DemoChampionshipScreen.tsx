@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { fetchMockChampionshipData } from '../../data/fetchMockData';
-import { Match, TeamMember, RoundEvent, Sport } from '../../types/index';
+import { MatchD, TeamMember, RoundEvent, Sport } from '../../types/index';
 import ChampionshipMatch from './DemoChampionshipMatch';
 import useAuthStore from '../../stores/useAuthStore';
 import { getFlavorText, getRandomEvent } from '../../utils/flavorTextUtils';
 
 const ChampionshipScreen: React.FC = () => {
   const { user } = useAuthStore();
-  const [currentMatch, setCurrentMatch] = useState<Match | null>(null);
+  const [currentMatch, setCurrentMatch] = useState<MatchD | null>(null);
   const [loading, setLoading] = useState(true);
 
   const generateMockRoundEvents = (attacker: TeamMember, defender: TeamMember): RoundEvent[] => {
@@ -35,7 +35,7 @@ const ChampionshipScreen: React.FC = () => {
 
         // Generate new events using the flavor text
         const newEvents = generateMockRoundEvents(mockMatch.currentRound.attacker, mockMatch.currentRound.defender);
-        const updatedMatch: Match = {
+        const updatedMatch: MatchD = {
           ...mockMatch,
           currentRound: {
             ...mockMatch.currentRound,

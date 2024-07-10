@@ -12,11 +12,22 @@ export const getFlavorText = (
   const key = `${attackerSport}Attacking_${defenderSport}Defending` as keyof FlavorTextData;
   const outcomeKey = isSuccessful ? 'successfulAttack' : 'successfulDefense';
   
+  if (!typedFlavorTextData[key]) {
+    console.error(`No flavor text found for ${key}`);
+    return { text: "No matching flavor text found.", points: 0 };
+  }
+
+  if (!typedFlavorTextData[key][outcomeKey]) {
+    console.error(`No ${outcomeKey} flavor text found for ${key}`);
+    return { text: "No matching flavor text found.", points: 0 };
+  }
+
   const relevantTexts = typedFlavorTextData[key][outcomeKey].filter(
     (item) => item.event === event
   );
 
   if (relevantTexts.length === 0) {
+    console.warn(`No flavor text found for event: ${event}`);
     return { text: "No matching flavor text found.", points: 0 };
   }
 

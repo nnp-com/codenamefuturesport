@@ -1,10 +1,10 @@
 import React from 'react';
 import PlayerCard from '../ui/playercardHome';
-import { Match, TeamMember } from '../../types/index';
+import { MatchD, TeamMember } from '../../types/index';
 import useAuthStore from '../../stores/useAuthStore';
 
 interface ChampionshipMatchProps {
-  currentMatch: Match;
+  currentMatch: MatchD;
 }
 
 const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ currentMatch }) => {
@@ -74,7 +74,7 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ currentMatch }) =
       <div className="flex justify-between items-start mb-4 flex-grow">
         <div className="w-1/4 flex flex-col items-center">
           {renderPlayerInfo(player1)}
-          {renderStackedCards(player1.team, currentMatch.currentRound.number - 1)}
+          {renderStackedCards(player1.members, currentMatch.currentRound.number - 1)}
         </div>
         <div className="w-1/2 flex flex-col items-center">
           <h3 className="text-xl font-semibold mb-4">ROUND {currentMatch.currentRound.number}</h3>
@@ -94,7 +94,7 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ currentMatch }) =
         </div>
         <div className="w-1/4 flex flex-col items-center">
           {renderPlayerInfo(player2)}
-          {renderStackedCards(player2.team, currentMatch.currentRound.number - 1)}
+          {renderStackedCards(player2.members, currentMatch.currentRound.number - 1)}
         </div>
       </div>
     </div>

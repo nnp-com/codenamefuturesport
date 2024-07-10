@@ -3,7 +3,7 @@
 import React from 'react';
 import useAuthRedirect from '../../hooks/useAuthRedirect';
 import useAuthStore from '../../stores/useAuthStore';
-import LockerRoomScreen from '../../components/LockerRoom';
+import LockerRoomScreen from '../../components/Lockerroom/LockerRoom';
 import LockerRoomAdmin from '../../components/Admin/LockerRoomAdmin';
 
 const LockerRoom: React.FC = () => {
