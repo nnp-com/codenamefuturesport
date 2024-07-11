@@ -1,9 +1,12 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 import PlayerCard from '../ui/playercardHome';
 import { OngoingGame, User, TeamMember, Attempt } from '../../types/index';
 import useAuthStore from '../../stores/useAuthStore';
 import Timeline from './timeline';
+import CurrentAction from './CurrentAction';
 
 interface ChampionshipMatchProps {
   game: OngoingGame;
@@ -12,6 +15,8 @@ interface ChampionshipMatchProps {
 }
 
 const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ game, player1, player2 }) => {
+const [latestAttempt, setLatestAttempt] = useState<Attempt | null>(null);
+const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const { user } = useAuthStore();
 
   const currentRound = Math.floor(game.currentAttempt / 6) + 1;
@@ -26,7 +31,7 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ game, player1, pl
                         (game.currentAttempt % 12 >= 6 && player.uid === game.player2Id);
   
     return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center pt-4">
         <div className="flex items-center mb-2">
           <Image 
             src={player.photoURL} 
@@ -46,7 +51,7 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ game, player1, pl
   };
 
   const renderStackedCards = (player: User, activeCardId: string | null, alignRight: boolean) => {
-    const visiblePortion = 60;
+    const visiblePortion = 70;
     const stackSize = 4;
     
     // Filter out the active card and take up to 4 inactive cards
@@ -62,11 +67,15 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ game, player1, pl
         {inactiveCards.map((member, index) => (
           <div 
             key={member.id}
-            className={`absolute transition-all duration-300 ease-in-out ${alignRight ? 'right-0' : 'left-0'}`}
+            className={`absolute ${alignRight ? 'right-0' : 'left-0'}`}
             style={{ 
               top: `${index * visiblePortion}px`,
-              zIndex: index,
+              zIndex: hoveredCard === member.id ? 10 : index,
+              transform: hoveredCard === member.id ? 'scale(1.1) translateY(-10px)' : 'scale(1) translateY(0)',
+              transition: 'all 0.1s ease-out', // Faster transition
             }}
+            onMouseEnter={() => setHoveredCard(member.id)}
+            onMouseLeave={() => setHoveredCard(null)}
           >
             <PlayerCard 
               player={member} 
@@ -89,17 +98,15 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ game, player1, pl
     if (!player1Card || !player2Card) return null;
 
     return (
-      <div className="flex items-center justify-center w-full">
-        <div className="relative order-1">
-          <div className={`absolute inset-0 ${currentAttempt.attackingPlayerId === player1.uid ? 'bg-green-500' : 'bg-red-500'} opacity-25 rounded-lg blur-md`}></div>
-          <PlayerCard player={player1Card} position={1} isActive={true} />
-        </div>
-        <span className="mx-4 text-2xl font-bold order-2">VS</span>
-        <div className="relative order-3">
-          <div className={`absolute inset-0 ${currentAttempt.attackingPlayerId === player2.uid ? 'bg-green-500' : 'bg-red-500'} opacity-25 rounded-lg blur-md`}></div>
-          <PlayerCard player={player2Card} position={1} isActive={true} />
-        </div>
-      </div>
+<div className="flex items-center justify-center w-full">
+  <div className={`relative order-1 ${currentAttempt.attackingPlayerId === player1.uid ? 'shadow-[0_0_25px_10px_rgba(34,197,94,0.5)]' : 'shadow-[0_0_25px_10px_rgba(239,68,68,0.5)]'}`}>
+    <PlayerCard player={player1Card} position={1} isActive={true} />
+  </div>
+  <span className="mx-4 text-2xl font-bold order-2">VS</span>
+  <div className={`relative order-3 ${currentAttempt.attackingPlayerId === player2.uid ? 'shadow-[0_0_25px_10px_rgba(34,197,94,0.5)]' : 'shadow-[0_0_25px_10px_rgba(239,68,68,0.5)]'}`}>
+    <PlayerCard player={player2Card} position={1} isActive={true} />
+  </div>
+</div>
     );
   };
 
@@ -115,14 +122,11 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ game, player1, pl
           <h1 className="text-2xl font-bold">Championship Match</h1>
           {renderPlayerInfo(player2, game.player2Score)}
         </div>
-        <h3 className="text-xl font-semibold mt-4">ROUND {currentRound} - Attempt {currentAttemptInRound}/6</h3>
+        <h3 className="text-xl font-semibold">ROUND {currentRound} - Attempt {currentAttemptInRound}/6</h3>
       </div>
 
       <div className="mb-4 w-full max-w-7xl">
-        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-          <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${(currentRound / 12) * 100}%` }}></div>
-        </div>
-        <div className="flex justify-center space-x-2 mt-2">
+      <div className="flex justify-center space-x-2 mt-2 mb-4">
           {[1, 2, 3, 4, 5, 6].map((attempt) => (
             <div
               key={attempt}
@@ -130,20 +134,25 @@ const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ game, player1, pl
             ></div>
           ))}
         </div>
+        <div className="w-full bg-gray-300 rounded-full h-2.5">
+          <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${(currentRound / 12) * 100}%` }}></div>
+        </div>
       </div>
 
-      <div className="flex justify-between w-full max-w-7xl flex-grow">
+      <div className="flex justify-between w-full max-w-7xl mt-4 flex-grow">
         <div className="w-1/6 flex justify-start">
           {renderStackedCards(player1, activePlayer1CardId, false)}
         </div>
         <div className="w-4/6 flex flex-col justify-center items-center px-4">
-          <div className="w-full mb-8">
+          <div className="w-full mb-8 mt-8">
             {renderActiveCards()}
           </div>
+          <CurrentAction attempt={latestAttempt} />
           <Timeline 
             game={game}
             player1Name={player1.displayName}
             player2Name={player2.displayName}
+            onLatestAttempt={setLatestAttempt}
           />
         </div>
         <div className="w-1/6 flex justify-end">

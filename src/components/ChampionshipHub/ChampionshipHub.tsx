@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { getOngoingGames, getUserTeamData, getChampionshipStandings } from '../../lib/firebaseConfig';
-import { OngoingGame, User } from '../../types';
+import { getOngoingGames, getUserTeamData, getChampionshipStandings, getUserStats } from '../../lib/firebaseConfig';
+import { OngoingGame, User, UserStats, StandingsEntry } from '../../types';
 import useAuthStore from '../../stores/useAuthStore';
 
 interface EnhancedOngoingGame extends OngoingGame {
@@ -14,8 +14,9 @@ interface EnhancedOngoingGame extends OngoingGame {
     const router = useRouter();
     const { user } = useAuthStore();
     const [currentGame, setCurrentGame] = useState<EnhancedOngoingGame | null>(null);
-    const [standings, setStandings] = useState<Array<{ userId: string; points: number; user: User | null; matchesPlayed: number; wins: number; losses: number }>>([]);
+    const [standings, setStandings] = useState<StandingsEntry[]>([]);
     const [ongoingGames, setOngoingGames] = useState<EnhancedOngoingGame[]>([]);
+    const [userStats, setUserStats] = useState<UserStats | null>(null);
   
     useEffect(() => {
       const fetchData = async () => {
@@ -36,12 +37,10 @@ interface EnhancedOngoingGame extends OngoingGame {
           setOngoingGames(enhancedGames.filter(game => game.id !== userGame?.id));
   
           const standingsData = await getChampionshipStandings();
-          const enhancedStandings = await Promise.all(standingsData.map(async (standing) => {
-            const userData = await getUserTeamData(standing.userId);
-            // Note: matchesPlayed, wins, and losses are placeholders. You'll need to implement logic to calculate these.
-            return { ...standing, user: userData, matchesPlayed: 0, wins: 0, losses: 0 };
-          }));
-          setStandings(enhancedStandings);
+          setStandings(standingsData.detailed);
+  
+          const userStatsData = await getUserStats(user.uid);
+          setUserStats(userStatsData);
         }
       };
   
@@ -97,41 +96,41 @@ interface EnhancedOngoingGame extends OngoingGame {
       );
     };
   
-    const renderStandings = () => (
-      <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-        <h2 className="text-xl font-bold mb-2">Standings</h2>
-        <table className="w-full">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="p-2 text-left">Position</th>
-              <th className="p-2 text-left">Player</th>
-              <th className="p-2 text-center">Matches Played</th>
-              <th className="p-2 text-center">Wins</th>
-              <th className="p-2 text-center">Losses</th>
-              <th className="p-2 text-center">Points</th>
+  const renderStandings = () => (
+    <div className="bg-white p-4 rounded-lg shadow-md mb-4 mt-8">
+      <h2 className="text-xl font-bold mb-2">Standings</h2>
+      <table className="w-full">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="p-2 text-left">Position</th>
+            <th className="p-2 text-left">Player</th>
+            <th className="p-2 text-center">Matches Played</th>
+            <th className="p-2 text-center">Wins</th>
+            <th className="p-2 text-center">Losses</th>
+            <th className="p-2 text-center">Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          {standings.map((standing, index) => (
+            <tr key={standing.userId} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
+              <td className="p-2">{index + 1}</td>
+              <td className="p-2 flex items-center">
+                <Image src={standing.user?.photoURL || '/default-avatar.png'} alt={standing.user?.displayName || 'Player'} width={30} height={30} className="rounded-full mr-2" />
+                <span>{standing.user?.displayName || 'Unknown Player'}</span>
+              </td>
+              <td className="p-2 text-center">{standing.stats.totalGamesPlayed}</td>
+              <td className="p-2 text-center">{standing.stats.gameWins}</td>
+              <td className="p-2 text-center">{standing.stats.gameLosses}</td>
+              <td className="p-2 text-center">{standing.stats.totalPoints}</td>
             </tr>
-          </thead>
-          <tbody>
-            {standings.map((standing, index) => (
-              <tr key={standing.userId} className={index % 2 === 0 ? 'bg-gray-50' : ''}>
-                <td className="p-2">{index + 1}</td>
-                <td className="p-2 flex items-center">
-                  <Image src={standing.user?.photoURL || '/default-avatar.png'} alt={standing.user?.displayName || 'Player'} width={30} height={30} className="rounded-full mr-2" />
-                  <span>{standing.user?.displayName || 'Unknown Player'}</span>
-                </td>
-                <td className="p-2 text-center">{standing.matchesPlayed}</td>
-                <td className="p-2 text-center">{standing.wins}</td>
-                <td className="p-2 text-center">{standing.losses}</td>
-                <td className="p-2 text-center">{standing.points}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
   
     const renderOngoingMatches = () => (
-      <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+      <div className="bg-white p-4 rounded-lg shadow-md mb-4 mt-8">
         <h2 className="text-xl font-bold mb-2">Ongoing Matches</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {ongoingGames.map((game) => (
@@ -190,20 +189,36 @@ interface EnhancedOngoingGame extends OngoingGame {
     };
   
     const renderMatchHistory = () => (
-      <div className="bg-white p-4 rounded-lg shadow-md">
+      <div className="bg-white p-4 rounded-lg shadow-md mt-8">
         <h2 className="text-xl font-bold mb-2">Match History</h2>
         <p>Coming soon</p>
         {/* Implement match history here when data is available */}
       </div>
     );
+
+    // const renderUserStats = () => {
+    //     if (!userStats) return null;
+    
+    //     return (
+    //       <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+    //         <h2 className="text-xl font-bold mb-2">Your Stats</h2>
+    //         <p>Championship Wins: {userStats.championshipWins}</p>
+    //         <p>Game Wins: {userStats.gameWins}</p>
+    //         <p>Game Losses: {userStats.gameLosses}</p>
+    //         <p>Total Games Played: {userStats.totalGamesPlayed}</p>
+    //         <p>Win Rate: {((userStats.gameWins / userStats.totalGamesPlayed) * 100).toFixed(2)}%</p>
+    //       </div>
+    //     );
+    //   };
   
     return (
-      <div className="p-4">
+        <div className="p-4">
         <h1 className="text-3xl font-bold mb-6">Championship HUB</h1>
+        {/* {renderUserStats()} */}
         {renderCurrentMatch()}
         {renderStandings()}
         {renderOngoingMatches()}
-        {renderMatchHistory()}
+        {/* renderMatchHistory() */}
       </div>
     );
   };

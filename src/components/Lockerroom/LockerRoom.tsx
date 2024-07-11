@@ -32,8 +32,11 @@ const LockerRoom: React.FC = () => {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Locker Room: Your Current Team</h1>
+      <div className="flex justify-between items-center mb-4 mt-6">
+        <div>        
+          <h1 className="text-3xl font-bold">Locker Room</h1>
+          <h2 className="text-2xl font-bold">My Team</h2>
+        </div>
         <div className="text-right flex items-center">
           <p className="text-lg font-semibold text-green-500 mr-4">OFF: {totalOffensiveStrength}</p>
           <p className="text-lg font-semibold text-red-500">DEF: {totalDefensiveStrength}</p>

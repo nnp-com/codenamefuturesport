@@ -1,71 +1,100 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import useAuthStore from '../../stores/useAuthStore';
-import { OngoingGame, User, TeamMember } from '../../types';
-import { getOngoingGames, getUserTeamData, getChampionshipStandings } from '../../lib/firebaseConfig';
+import { OngoingGame, User, TeamMember, StandingsEntry } from '../../types';
+import { getOngoingGames, getUserTeamData, getChampionshipStandings, isUserInChampionship } from '../../lib/firebaseConfig';
 
 interface ChampionshipComponentProps {
-    teamMembers: TeamMember[];
-  }
-  
-  const ChampionshipComponent: React.FC<ChampionshipComponentProps> = ({ teamMembers }) => {
-    const router = useRouter();
-    const { user, enterChampionship } = useAuthStore();
-    const [currentGame, setCurrentGame] = useState<OngoingGame | null>(null);
-    const [opponent, setOpponent] = useState<User | null>(null);
-    const [standings, setStandings] = useState<{ userId: string; points: number; user: User | null }[]>([]);
-    const [isChampionshipActive, setIsChampionshipActive] = useState(false);
-  
-    useEffect(() => {
-      const fetchChampionshipData = async () => {
-        if (user) {
-          const ongoingGames = await getOngoingGames();
+  teamMembers: TeamMember[];
+}
+
+const ChampionshipComponent: React.FC<ChampionshipComponentProps> = ({ teamMembers }) => {
+  const router = useRouter();
+  const { user, enterChampionship } = useAuthStore();
+  const [currentGame, setCurrentGame] = useState<OngoingGame | null>(null);
+  const [opponent, setOpponent] = useState<User | null>(null);
+  const [standings, setStandings] = useState<StandingsEntry[]>([]);
+  const [isChampionshipActive, setIsChampionshipActive] = useState(false);
+  const [hasEnteredChampionship, setHasEnteredChampionship] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const fetchChampionshipData = async () => {
+      if (user) {
+        const userEnteredChampionship = await isUserInChampionship(user.uid);
+        setHasEnteredChampionship(userEnteredChampionship);
+
+        const ongoingGames = await getOngoingGames();
+        setIsChampionshipActive(ongoingGames.length > 0);
+
+        if (userEnteredChampionship && ongoingGames.length > 0) {
           const currentUserGame = ongoingGames.find(game => game.player1Id === user.uid || game.player2Id === user.uid);
           setCurrentGame(currentUserGame || null);
-  
+
           if (currentUserGame) {
             const opponentId = currentUserGame.player1Id === user.uid ? currentUserGame.player2Id : currentUserGame.player1Id;
             const opponentData = await getUserTeamData(opponentId) as User;
             setOpponent(opponentData);
           }
-  
+
           const standingsData = await getChampionshipStandings();
-          const enhancedStandings = await Promise.all(standingsData.slice(0, 3).map(async (standing) => {
-            const userData = await getUserTeamData(standing.userId) as User;
-            return { ...standing, user: userData };
-          }));
-          setStandings(enhancedStandings);
-  
-          setIsChampionshipActive(ongoingGames.length > 0);
+          setStandings(standingsData.detailed.slice(0, 3)); // Only take top 3
         }
-      };
-  
-      fetchChampionshipData();
-    }, [user]);
-  
-    const handleEnterChampionship = async () => {
-      await enterChampionship();
-      router.push('/lobby');
+      }
     };
-  
-    const handleTimeout = () => {
-      // Implement timeout logic here
-      console.log("Timeout requested");
-    };
-  
-    if (!isChampionshipActive) {
-      return (
-        <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-          <h2 className="text-xl font-bold mb-2">Championship</h2>
-          <p>There is no active championship at the moment.</p>
-        </div>
-      );
+
+    fetchChampionshipData();
+  }, [user]);
+
+  const handleEnterChampionship = async () => {
+    if (teamMembers.length === 0) {
+      alert("Please select a team before entering the championship.");
+      return;
     }
-  
-    return (
-      <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-        <h2 className="text-xl font-bold mb-4">Championship</h2>
+    setShowModal(true);
+  };
+
+  const confirmEnterChampionship = async () => {
+    await enterChampionship();
+    setHasEnteredChampionship(true);
+    setShowModal(false);
+  };
+
+  const handleEnterHub = () => {
+    router.push('/hub');
+  };
+
+  const handleViewLobby = () => {
+    router.push('/lobby');
+  };
+
+  return (
+    <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+      <h2 className="text-xl font-bold mb-4">Championship</h2>
+      {!hasEnteredChampionship ? (
+        <div className="text-center">
+          <p className="mb-4">Think your team has what it takes? <br/><span className="font-bold">Prove it! </span><br/>Join the Championship and let’s see if you can rise to the top!</p>
+          <button 
+            onClick={handleEnterChampionship}
+            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          >
+            Enter Championship
+          </button>
+        </div>
+      ) : !isChampionshipActive ? (
+        <div className="text-center">
+          <p className="mb-4">Waiting for the championship to start...</p>
+          <button 
+            onClick={handleViewLobby}
+            className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
+          >
+            View Lobby
+          </button>
+        </div>
+      ) : (
         <div className="flex justify-between">
           <div className="w-1/3">
             <h3 className="font-semibold mb-2 underline">Current Match</h3>
@@ -105,39 +134,49 @@ interface ChampionshipComponentProps {
                         <span>{standing.user?.displayName || `Player ${index + 1}`}</span>
                       </div>
                     </td>
-                    <td className="border px-2 py-1 text-center">{standing.points}</td>
+                    <td className="border px-2 py-1 text-center">{standing.stats.totalPoints}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-            <div className="w-1/3 flex flex-col justify-end items-end">
-                <div className="mb-2 w-60">
-                    <button 
-                    onClick={handleTimeout}
-                    className="px-4 py-2 bg-gray-300 text-gray-600 rounded hover:bg-gray-400 cursor-not-allowed w-full"
-                    disabled
-                    >
-                    TAKE TIME OUT
-                    </button>
-                    <p className="text-xs text-gray-500 mt-1 text-center">Coming Soon</p>
-                </div>
-                <div className="w-60">
-                    <button 
-                    onClick={handleEnterChampionship}
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 w-full"
-                    >
-                    Enter Championship HUB
-                    </button>
-                </div>
+          <div className="w-1/3 flex flex-col justify-end items-end">
+            <div className="w-60">
+              <button 
+                onClick={handleEnterHub}
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 w-full"
+              >
+                Enter Championship HUB
+              </button>
             </div>
+          </div>
         </div>
-      </div>
-    );
-  };
-  
-  export default ChampionshipComponent;
+      )}
 
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-4 rounded">
+            <h2 className="text-xl font-bold mb-4">Enter Championship</h2>
+            <p>Are you sure you want to enter the championship with your current team?</p>
+            <div className="flex justify-end mt-4">
+              <button 
+                onClick={() => setShowModal(false)}
+                className="mr-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={confirmEnterChampionship}
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
-
-
+export default ChampionshipComponent;

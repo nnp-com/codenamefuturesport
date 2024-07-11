@@ -134,51 +134,53 @@ const TeamSelectionScreen: React.FC = () => {
   </button>
 </div>
 
-      <div className="mb-4 flex justify-center">
-        <Listbox value={selectedSport} onChange={setSelectedSport}>
-          <div className="relative mr-2">
-            <Listbox.Button className="p-2 border rounded">
-              {selectedSport}
-            </Listbox.Button>
-            <Listbox.Options className="absolute mt-1 w-56 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-              {["Basketball", "Baseball", "Soccer"].map((sport) => (
-                <Listbox.Option
-                  key={sport}
-                  value={sport}
-                  className={({ active }) =>
-                    `${active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'}
-                    cursor-default select-none relative py-2 pl-10 pr-4`
-                  }
-                >
-                  {sport}
-                </Listbox.Option>
-              ))}
-            </Listbox.Options>
-          </div>
-        </Listbox>
+<div className="mb-4 flex justify-center items-center">
+  <span className="mr-2 font-bold">Pick a sport</span>
+  <Listbox value={selectedSport} onChange={setSelectedSport}>
+    <div className="relative mr-4">
+      <Listbox.Button className="p-2 border rounded">
+        {selectedSport}
+      </Listbox.Button>
+      <Listbox.Options className="absolute mt-1 w-56 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+        {["Basketball", "Baseball", "Soccer"].map((sport) => (
+          <Listbox.Option
+            key={sport}
+            value={sport}
+            className={({ active }) =>
+              `${active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'}
+              cursor-default select-none relative py-2 pl-10 pr-4`
+            }
+          >
+            {sport}
+          </Listbox.Option>
+        ))}
+      </Listbox.Options>
+    </div>
+  </Listbox>
 
-        <Listbox value={selectedStarTier} onChange={setSelectedStarTier}>
-          <div className="relative">
-            <Listbox.Button className="p-2 border rounded">
-              {selectedStarTier} Star
-            </Listbox.Button>
-            <Listbox.Options className="absolute mt-1 w-56 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-              {[1, 2, 3, 4, 5].map((tier) => (
-                <Listbox.Option
-                  key={tier}
-                  value={tier}
-                  className={({ active }) =>
-                    `${active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'}
-                    cursor-default select-none relative py-2 pl-10 pr-4`
-                  }
-                >
-                  {tier} Star
-                </Listbox.Option>
-              ))}
-            </Listbox.Options>
-          </div>
-        </Listbox>
-      </div>
+  <span className="mr-2 font-bold">... and a star ranking</span>
+  <Listbox value={selectedStarTier} onChange={setSelectedStarTier}>
+    <div className="relative">
+      <Listbox.Button className="p-2 border rounded">
+        {selectedStarTier} Star
+      </Listbox.Button>
+      <Listbox.Options className="absolute mt-1 w-56 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+        {[1, 2, 3, 4, 5].map((tier) => (
+          <Listbox.Option
+            key={tier}
+            value={tier}
+            className={({ active }) =>
+              `${active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'}
+              cursor-default select-none relative py-2 pl-10 pr-4`
+            }
+          >
+            {tier} Star
+          </Listbox.Option>
+        ))}
+      </Listbox.Options>
+    </div>
+  </Listbox>
+</div>
 
       {loading ? (
         <div className="text-center">Loading...</div>

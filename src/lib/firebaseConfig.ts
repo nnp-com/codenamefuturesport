@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, collection, addDoc, deleteDoc, getDocs, updateDoc, query, where, Timestamp, increment, writeBatch } from 'firebase/firestore';
-import { TeamMember, MatchResult, Attempt, OngoingGame, AttemptResult, ChampionshipState, User } from '../types/index';
+import { TeamMember, MatchResult, Attempt, OngoingGame, AttemptResult, ChampionshipState, User, UserStats, StandingsEntry } from '../types/index';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -63,6 +63,7 @@ const checkAdminStatus = async (userId: string) => {
   return false;
 };
 
+
 // CURRENT ADMIN with Email
 const setAdminStatus = async (userId: string, email: string) => {
   const adminEmails = ['simon@nevernotplay.com']; 
@@ -104,6 +105,28 @@ const enterChampionship = async (userId: string) => {
     });
   }
 };
+
+// const getWaitingListPlayers = async () => {
+//   const waitingListRef = collection(db, 'waitingList');
+//   const waitingListSnapshot = await getDocs(waitingListRef);
+//   return waitingListSnapshot.docs.map(doc => doc.data());
+// };
+
+// const moveWaitingListToEntered = async () => {
+//   const waitingListRef = collection(db, 'waitingList');
+//   const waitingListSnapshot = await getDocs(waitingListRef);
+  
+//   const batch = writeBatch(db);
+  
+//   waitingListSnapshot.docs.forEach((waitingDoc) => {
+//     const data = waitingDoc.data();
+//     const newEnteredRef = doc(db, 'enteredChampionship', data.userId);
+//     batch.set(newEnteredRef, data);
+//     batch.delete(waitingDoc.ref);
+//   });
+
+//   await batch.commit();
+// };
 
 
 
@@ -213,7 +236,58 @@ const updatePlayerStats = async (playerId: string, score: number, won: boolean) 
   await updateDoc(playerDoc, {
     totalPoints: increment(score),
     legacyPoints: increment(score),
-    championshipWins: increment(won ? 1 : 0),
+    gameWins: increment(won ? 1 : 0),
+    gameLosses: increment(won ? 0 : 1),
+    totalGamesPlayed: increment(1),
+  });
+};
+
+const getUserStats = async (userId: string) => {
+  const userDoc = await getDoc(doc(db, 'teams', userId));
+  if (userDoc.exists()) {
+    const userData = userDoc.data();
+    return {
+      championshipWins: userData.championshipWins ?? 0,
+      gameWins: userData.gameWins ?? 0,
+      gameLosses: userData.gameLosses ?? 0,
+      totalGamesPlayed: userData.totalGamesPlayed ?? 0,
+      totalPoints: userData.totalPoints ?? 0,
+    };
+  }
+  // Return default values if the document doesn't exist
+  return {
+    championshipWins: 0,
+    gameWins: 0,
+    gameLosses: 0,
+    totalGamesPlayed: 0,
+    totalPoints: 0,
+  };
+};
+
+const isUserInChampionship = async (userId: string): Promise<boolean> => {
+  const enteredChampionshipRef = doc(db, 'enteredChampionship', userId);
+  const enteredChampionshipDoc = await getDoc(enteredChampionshipRef);
+  return enteredChampionshipDoc.exists();
+};
+
+const enterChampionshipWaitlist = async (userId: string): Promise<void> => {
+  await addDoc(collection(db, 'waitingList'), {
+    userId,
+    enteredAt: Timestamp.now(),
+  });
+};
+
+export const isUserInWaitlist = async (userId: string): Promise<boolean> => {
+  const waitlistRef = collection(db, 'waitingList');
+  const q = query(waitlistRef, where('userId', '==', userId));
+  const querySnapshot = await getDocs(q);
+  return !querySnapshot.empty;
+};
+
+const updateChampionshipWin = async (winnerId: string) => {
+  const playerDoc = doc(db, 'teams', winnerId);
+  await updateDoc(playerDoc, {
+    championshipWins: increment(1),
   });
 };
 
@@ -280,22 +354,35 @@ const getChampionshipState = async (): Promise<ChampionshipState> => {
   if (stateDoc.exists()) {
     return stateDoc.data() as ChampionshipState;
   } else {
-    // Return a default state if no document exists
     return {
       currentStage: 0,
-      matchesPlayed: [], // Default to an empty array of MatchResult objects
-      remainingMatches: {}, // Default to an empty object
-      isFinished: false,
+      matchesPlayed: [],
+      remainingMatches: {},
+      isFinished: true,
       standings: []
     };
   }
 };
 
-const getChampionshipStandings = async (): Promise<{ userId: string, points: number }[]> => {
-  const players = await getEnteredPlayers();
-  const standings: { userId: string, points: number }[] = players.map(player => ({
-    userId: player.uid, // Changed from player.userId to player.uid
-    points: 0,
+const getChampionshipStandings = async (): Promise<{
+  detailed: StandingsEntry[];
+  simplified: { userId: string; points: number; }[];
+}> => {
+  const players = await getEnteredPlayers() as User[];
+  let standings: StandingsEntry[] = await Promise.all(players.map(async (player) => {
+    const userData = await getUserTeamData(player.uid) as User;
+    const userStats = await getUserStats(player.uid);
+    return {
+      userId: player.uid,
+      user: userData,
+      stats: {
+        championshipWins: userStats?.championshipWins ?? 0,
+        gameWins: userStats?.gameWins ?? 0,
+        gameLosses: userStats?.gameLosses ?? 0,
+        totalGamesPlayed: userStats?.totalGamesPlayed ?? 0,
+        totalPoints: 0, // We'll calculate this from completed matches
+      },
+    };
   }));
 
   const completedMatches = await getAllCompletedMatches();
@@ -304,11 +391,21 @@ const getChampionshipStandings = async (): Promise<{ userId: string, points: num
     const player1Standing = standings.find(s => s.userId === match.player1Id);
     const player2Standing = standings.find(s => s.userId === match.player2Id);
 
-    if (player1Standing) player1Standing.points += match.player1TotalScore;
-    if (player2Standing) player2Standing.points += match.player2TotalScore;
+    if (player1Standing) player1Standing.stats.totalPoints += match.player1TotalScore;
+    if (player2Standing) player2Standing.stats.totalPoints += match.player2TotalScore;
   }
 
-  return standings.sort((a, b) => b.points - a.points);
+  standings.sort((a, b) => b.stats.totalPoints - a.stats.totalPoints);
+
+  const simplifiedStandings = standings.map(s => ({
+    userId: s.userId,
+    points: s.stats.totalPoints
+  }));
+
+  return {
+    detailed: standings,
+    simplified: simplifiedStandings
+  };
 };
 
 const deleteOngoingGame = async (gameId: string): Promise<void> => {
@@ -343,6 +440,9 @@ const resetPlayerStats = async (playerId: string): Promise<void> => {
   const playerRef = doc(db, 'teams', playerId);
   await updateDoc(playerRef, {
     championshipWins: 0,
+    gameWins: 0,
+    gameLosses: 0,
+    totalGamesPlayed: 0,
     totalPoints: 0,
     legacyPoints: 0,
   });
@@ -379,4 +479,10 @@ export {
   clearMatchHistory,
   resetPlayerStats,
   clearOngoingGames,
+  updateChampionshipWin,
+  getUserStats,
+  // getWaitingListPlayers,
+  // moveWaitingListToEntered,
+  isUserInChampionship,
+  enterChampionshipWaitlist,
 };

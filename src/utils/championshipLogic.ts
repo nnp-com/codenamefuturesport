@@ -1,6 +1,5 @@
 import { User, TeamMember, MatchResult, Attempt, OngoingGame, AttemptResult, ChampionshipState, Sport, Match } from '../types/index';
 import { performAttempt } from './gameRules';
-import { getFlavorText, getRandomEvent } from '../utils/flavorTextUtils';
 import { 
     createOngoingGame, 
     updateOngoingGame, 
@@ -144,19 +143,19 @@ export const resetChampionship = async (): Promise<void> => {
         await clearMatchHistory();
 
         // Clear championship state
-        await updateChampionshipState({
+        const initialChampionshipState: ChampionshipState = {
             currentStage: 0,
-            matchesPlayed: [], // Assuming a default value
-            remainingMatches: {}, // Changed to an empty object
-            isFinished: false, // Assuming a default value
-            standings: [] // Assuming a default value
-        });
+            matchesPlayed: [],
+            remainingMatches: {},
+            isFinished: false,
+            standings: []
+        };
+        await updateChampionshipState(initialChampionshipState);
 
         // Reset player stats
         const players = await getEnteredPlayers() as User[];
-        for (const player of players) {
-            await resetPlayerStats(player.uid);
-        }
+        const resetPromises = players.map(player => resetPlayerStats(player.uid));
+        await Promise.all(resetPromises);
 
         console.log('Championship reset successfully');
     } catch (error) {

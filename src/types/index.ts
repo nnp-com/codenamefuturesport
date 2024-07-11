@@ -1,5 +1,4 @@
-// types/index.ts
-import { Timestamp, FieldValue } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore';
 
 
 export interface Player {
@@ -21,8 +20,11 @@ export interface User {
   uid: string;
   displayName: string;
   photoURL: string;
-  members: TeamMember[]; // Changed from 'team' to 'members'
-  championshipWins?: number;
+  members: TeamMember[]; 
+  championshipWins: number;  
+  gameWins: number;          
+  gameLosses: number;        
+  totalGamesPlayed: number;
   totalPoints?: number;
   legacyPoints?: number;
   bot: boolean;
@@ -125,31 +127,6 @@ export interface MatchResult {
   };
 }
 
-// export interface OngoingGame {
-//   id: string;
-//   player1Id: string;
-//   player2Id: string;
-//   player1Score: number;
-//   player2Score: number;
-//   currentAttempt: number;
-//   currentRound: number;
-//   isComplete: boolean;
-//   player1IsAttacker: boolean; // New field to track who's attacking
-//   activeAttacker: string;
-//   activeDefender: string;
-//   attempts: {
-//     [attemptId: string]: {
-//       attemptNumber: number;
-//       roundNumber: number;
-//       attacker: string;
-//       defender: string;
-//       result: AttemptResult;
-//     };
-//   };
-//   arena: string;
-//   startTime: Timestamp;
-// }
-
 export interface OngoingGame {
   id: string;
   player1Id: string;
@@ -167,6 +144,20 @@ export interface OngoingGame {
 export interface MatchHistory extends OngoingGame {
   endTime: Timestamp;
   winner: string;
+}
+
+export interface StandingsEntry {
+  userId: string;
+  user: User | null;
+  stats: UserStats;
+}
+
+export interface UserStats {
+  championshipWins: number;
+  gameWins: number;
+  gameLosses: number;
+  totalGamesPlayed: number;
+  totalPoints: number;
 }
 
 export interface Match {

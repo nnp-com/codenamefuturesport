@@ -1,4 +1,5 @@
 import { Sport, TeamMember, AttemptResult, MatchResult, RoundResult } from './gameTypes';
+import { getFlavorText } from '../utils/flavorTextUtils';
 import flavorTextData from '../data/flavourText.json';
 
 // Sport vs Sport (SVS) indicator points
@@ -30,23 +31,22 @@ export const POINT_RANKINGS = {
 
 export const DEFENSE_RANKINGS = {
   Baseball: [
-    {min: 0, max: 99, points: 0, action: 'catch'},
-    {min: 0, max: 99, points: 0, action: 'block'},
-    {min: 0, max: 99, points: 0, action: 'intercept'},
-    {min: 0, max: 99, points: 0, action: 'dive'},
-    {min: 0, max: 99, points: 0, action: 'leap'},
+    {min: 0, max: 69, points: 0, action: 'catch'},
+    {min: 70, max: 79, points: 0, action: 'block'},
+    {min: 80, max: 89, points: 0, action: 'intercept'},
+    {min: 90, max: 99, points: 0, action: 'dive'},
   ],
   Basketball: [
-    {min: 0, max: 99, points: 0, action: 'block'},
-    {min: 0, max: 99, points: 0, action: 'deflection'},
-    {min: 0, max: 99, points: 0, action: 'save'},
-    {min: 0, max: 99, points: 0, action: 'interception'},
+    {min: 0, max: 69, points: 0, action: 'block'},
+    {min: 70, max: 79, points: 0, action: 'deflection'},
+    {min: 80, max: 89, points: 0, action: 'steal'},
+    {min: 90, max: 99, points: 0, action: 'rebound'},
   ],
   Soccer: [
-    {min: 0, max: 99, points: 0, action: 'block'},
-    {min: 0, max: 99, points: 0, action: 'deflection'},
-    {min: 0, max: 99, points: 0, action: 'interception'},
-    {min: 0, max: 99, points: 0, action: 'save'},
+    {min: 0, max: 69, points: 0, action: 'tackle'},
+    {min: 70, max: 79, points: 0, action: 'save'},
+    {min: 80, max: 89, points: 0, action: 'block'},
+    {min: 90, max: 99, points: 0, action: 'interception'},
   ],
 };
 
@@ -90,32 +90,48 @@ export const performAttempt = (attacker: TeamMember, defender: TeamMember): Atte
 
   if (endRoll < 100) {
     // Defensive success
-    return {
-      points: 0,
-      action: 'defend',
-      description: `${defender.name} successfully defended against ${attacker.name}'s attack.`
-    };
+    const defenseRankings = DEFENSE_RANKINGS[defender.sport];
+    for (const ranking of defenseRankings) {
+      if (endRoll >= ranking.min && endRoll <= ranking.max) {
+        console.log(`Defensive success: ${ranking.action}`);
+        const flavorText = getFlavorText(attacker.sport, defender.sport, false, ranking.action);
+        
+        return {
+          points: 0,
+          action: ranking.action,
+          description: replacePlayers(flavorText.text, defender.name, attacker.name)
+        };
+      }
+    }
   } else {
     // Offensive success
     const sportRankings = POINT_RANKINGS[attacker.sport];
     for (const ranking of sportRankings) {
       if (endRoll >= ranking.min && endRoll <= ranking.max) {
+        const flavorText = getFlavorText(attacker.sport, defender.sport, true, ranking.action);
+        
         return {
           points: ranking.points,
           action: ranking.action,
-          description: `${attacker.name} scored ${ranking.points} points with a ${ranking.action} against ${defender.name}.`
+          description: replacePlayers(flavorText.text, attacker.name, defender.name)
         };
       }
     }
   }
 
-  // This should never happen, but TypeScript requires a return statement
+  // required return statement
   console.error(`Unexpected scenario in performAttempt: endRoll ${endRoll}, attacker ${attacker.sport}, defender ${defender.sport}`);
   return {
     points: 0,
     action: 'error',
     description: `An unexpected situation occurred between ${attacker.name} and ${defender.name}.`
   };
+};
+
+// Helper function to replace player names in flavor text
+const replacePlayers = (text: string, attacker: string, defender: string): string => {
+  return text.replace(/\[Player One\]([\s\S]*?)(\W*)(?=\s|$)/g, `${attacker}$1$2`)
+             .replace(/\[Player Two\]([\s\S]*?)(\W*)(?=\s|$)/g, `${defender}$1$2`);
 };
 
 export const performRound = (player1Team: TeamMember[], player2Team: TeamMember[]): RoundResult => {
