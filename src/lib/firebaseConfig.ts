@@ -331,6 +331,19 @@ const getOngoingGames = async (): Promise<OngoingGame[]> => {
   return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as OngoingGame));
 };
 
+export const getSpectatorGame = async (gameId: string): Promise<OngoingGame | null> => {
+  try {
+    const gameDoc = await getDoc(doc(db, 'ongoingGames', gameId));
+    if (gameDoc.exists()) {
+      return { id: gameDoc.id, ...gameDoc.data() } as OngoingGame;
+    }
+    return null;
+  } catch (error) {
+    console.error('Error fetching spectator game:', error);
+    throw error;
+  }
+};
+
 const getMatchHistory = async (matchId: string) => {
   const matchDoc = doc(db, 'matchHistory', matchId);
   const matchSnapshot = await getDoc(matchDoc);

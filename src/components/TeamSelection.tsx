@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Listbox } from '@headlessui/react';
+import { useRouter } from 'next/navigation';
 import useTeamSelectionStore from '../stores/TeamSelectionStore';
 import PlayerCard from './ui/playercard';
 import { SPORTS } from '../constants';
@@ -34,6 +35,7 @@ const TeamSelectionScreen: React.FC = () => {
     removeAllPlayers,
     setAllPlayers,
   } = useTeamSelectionStore();
+  const router = useRouter();
 
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
@@ -44,6 +46,10 @@ const TeamSelectionScreen: React.FC = () => {
   const confirmRemoveAllPlayers = () => {
     removeAllPlayers();
     setIsConfirmModalOpen(false);
+  };
+
+  const handleBack = () => {
+    router.push('/lockerroom');
   };
 
   useEffect(() => {
@@ -94,6 +100,12 @@ const TeamSelectionScreen: React.FC = () => {
   return (
     <div className="p-4">
       <div className="flex justify-between items-start mb-4">
+        <button
+          onClick={handleBack}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          ← Back to Locker Room
+        </button>
         <h1 className="text-2xl font-bold">Team Selection</h1>
         <div className="text-right">
           <div className="text-xl font-semibold">

@@ -18,6 +18,10 @@ interface EnhancedOngoingGame extends OngoingGame {
     const [ongoingGames, setOngoingGames] = useState<EnhancedOngoingGame[]>([]);
     const [userStats, setUserStats] = useState<UserStats | null>(null);
   
+    const handleSpectateMatch = (gameId: string) => {
+      router.push(`/spectate/${gameId}`);
+    };
+
     useEffect(() => {
       const fetchData = async () => {
         if (user) {
@@ -129,34 +133,38 @@ interface EnhancedOngoingGame extends OngoingGame {
     </div>
   );
   
-    const renderOngoingMatches = () => (
-      <div className="bg-white p-4 rounded-lg shadow-md mb-4 mt-8">
-        <h2 className="text-xl font-bold mb-2">Ongoing Matches</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {ongoingGames.map((game) => (
-            <div key={game.id} className="border p-4 rounded-lg shadow">
-              <h3 className="text-lg font-semibold mb-2">{game.arena}</h3>
-              <div className="flex justify-between items-center mb-2">
-                <div className="flex items-center">
-                  <Image src={game.player1Data.photoURL || '/default-avatar.png'} alt={game.player1Data.displayName} width={40} height={40} className="rounded-full mr-2" />
-                  <span>{game.player1Data.displayName}</span>
-                </div>
-                <span className="font-bold">{game.player1Score}</span>
+
+  const renderOngoingMatches = () => (
+    <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+      <h2 className="text-xl font-bold mb-2">Ongoing Matches</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {ongoingGames.map((game) => (
+          <div 
+            key={game.id} 
+            className="border p-4 rounded-lg shadow cursor-pointer hover:bg-gray-100 transition-colors"
+            onClick={() => handleSpectateMatch(game.id)}
+          >
+            <h3 className="text-lg font-semibold mb-2">{game.arena}</h3>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
+                <Image src={game.player1Data.photoURL || '/default-avatar.png'} alt={game.player1Data.displayName} width={40} height={40} className="rounded-full mr-2" />
+                <span>{game.player1Data.displayName}</span>
               </div>
-              <div className="flex justify-between items-center mb-2">
-                <div className="flex items-center">
-                  <Image src={game.player2Data.photoURL || '/default-avatar.png'} alt={game.player2Data.displayName} width={40} height={40} className="rounded-full mr-2" />
-                  <span>{game.player2Data.displayName}</span>
-                </div>
-                <span className="font-bold">{game.player2Score}</span>
-              </div>
-              <p>Round: {Math.floor(game.currentAttempt / 6) + 1}, Attempt: {game.currentAttempt % 6 + 1}/6</p>
-              {renderCurrentMatchup(game)}
+              <span className="font-bold">{game.player1Score}</span>
             </div>
-          ))}
-        </div>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
+                <Image src={game.player2Data.photoURL || '/default-avatar.png'} alt={game.player2Data.displayName} width={40} height={40} className="rounded-full mr-2" />
+                <span>{game.player2Data.displayName}</span>
+              </div>
+              <span className="font-bold">{game.player2Score}</span>
+            </div>
+            <p>Round: {Math.floor(game.currentAttempt / 6) + 1}, Attempt: {game.currentAttempt % 6 + 1}/6</p>
+          </div>
+        ))}
       </div>
-    );
+    </div>
+  );
   
     const renderCurrentMatchup = (game: EnhancedOngoingGame) => {
       if (game.currentAttempt === 0 || !game.attempts || Object.values(game.attempts).length === 0) {

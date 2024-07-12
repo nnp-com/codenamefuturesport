@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import PlayerCard from '../ui/playercardHome';
+import { useRouter } from 'next/navigation';
 import { OngoingGame, User, TeamMember, Attempt } from '../../types/index';
 import useAuthStore from '../../stores/useAuthStore';
 import Timeline from './timeline';
@@ -17,7 +18,12 @@ interface ChampionshipMatchProps {
 const ChampionshipMatch: React.FC<ChampionshipMatchProps> = ({ game, player1, player2 }) => {
 const [latestAttempt, setLatestAttempt] = useState<Attempt | null>(null);
 const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const { user } = useAuthStore();
+const { user } = useAuthStore();
+const router = useRouter();
+
+const handleBack = () => {
+  router.push('/hub');
+};
 
   const currentRound = Math.floor(game.currentAttempt / 6) + 1;
   const currentAttemptInRound = game.currentAttempt % 6 + 1;
@@ -114,53 +120,64 @@ const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     .map(([attemptId, attempt]) => ({ ...attempt, attemptId }))
     .sort((a, b) => b.attemptNumber - a.attemptNumber);
 
-  return (
-    <div className="p-4 flex flex-col h-screen items-center">
-      <div className="flex flex-col items-center mb-4 w-full max-w-7xl">
-        <div className="flex justify-between items-center w-full">
-          {renderPlayerInfo(player1, game.player1Score)}
+    return (
+      <div className="p-4 flex flex-col h-screen items-center">
+        <div className="flex justify-between items-center mb-4 w-full max-w-7xl">
+          <button
+            onClick={handleBack}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            ← Back
+          </button>
           <h1 className="text-2xl font-bold">Championship Match</h1>
-          {renderPlayerInfo(player2, game.player2Score)}
+          <div className="w-[100px]"></div> {/* This empty div balances the layout */}
         </div>
-        <h3 className="text-xl font-semibold">ROUND {currentRound} - Attempt {currentAttemptInRound}/6</h3>
-      </div>
-
-      <div className="mb-4 w-full max-w-7xl">
-      <div className="flex justify-center space-x-2 mt-2 mb-4">
-          {[1, 2, 3, 4, 5, 6].map((attempt) => (
-            <div
-              key={attempt}
-              className={`w-3 h-3 rounded-full ${attempt <= currentAttemptInRound ? 'bg-blue-600' : 'bg-gray-300'}`}
-            ></div>
-          ))}
-        </div>
-        <div className="w-full bg-gray-300 rounded-full h-2.5">
-          <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${(currentRound / 12) * 100}%` }}></div>
-        </div>
-      </div>
-
-      <div className="flex justify-between w-full max-w-7xl mt-4 flex-grow">
-        <div className="w-1/6 flex justify-start">
-          {renderStackedCards(player1, activePlayer1CardId, false)}
-        </div>
-        <div className="w-4/6 flex flex-col justify-center items-center px-4">
-          <div className="w-full mb-8 mt-8">
-            {renderActiveCards()}
+  
+        <div className="flex justify-between items-center mb-4 w-full max-w-7xl relative">
+  {renderPlayerInfo(player1, game.player1Score)}
+  <div className="absolute inset-0 flex flex-col items-center justify-center">
+    <h3 className="text-xl font-semibold">ROUND {currentRound}</h3>
+    <p>Attempt {currentAttemptInRound}/6</p>
+  </div>
+  {renderPlayerInfo(player2, game.player2Score)}
+</div>
+  
+        <div className="mb-4 w-full max-w-7xl">
+          <div className="flex justify-center space-x-2 mb-4">
+            {[1, 2, 3, 4, 5, 6].map((attempt) => (
+              <div
+                key={attempt}
+                className={`w-3 h-3 rounded-full ${attempt <= currentAttemptInRound ? 'bg-blue-600' : 'bg-gray-300'}`}
+              ></div>
+            ))}
           </div>
-          <CurrentAction attempt={latestAttempt} />
-          <Timeline 
-            game={game}
-            player1Name={player1.displayName}
-            player2Name={player2.displayName}
-            onLatestAttempt={setLatestAttempt}
-          />
+          <div className="w-full bg-gray-300 rounded-full h-2.5">
+            <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${(currentRound / 12) * 100}%` }}></div>
+          </div>
         </div>
-        <div className="w-1/6 flex justify-end">
-          {renderStackedCards(player2, activePlayer2CardId, true)}
+  
+        <div className="flex justify-between w-full max-w-7xl mt-4 flex-grow">
+          <div className="w-1/6 flex justify-start">
+            {renderStackedCards(player1, activePlayer1CardId, false)}
+          </div>
+          <div className="w-4/6 flex flex-col justify-center items-center px-4">
+            <div className="w-full mb-8 mt-8">
+              {renderActiveCards()}
+            </div>
+            <CurrentAction attempt={latestAttempt} />
+            <Timeline 
+              game={game}
+              player1Name={player1.displayName}
+              player2Name={player2.displayName}
+              onLatestAttempt={setLatestAttempt}
+            />
+          </div>
+          <div className="w-1/6 flex justify-end">
+            {renderStackedCards(player2, activePlayer2CardId, true)}
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-export default ChampionshipMatch;
+  export default ChampionshipMatch;
