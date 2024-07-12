@@ -20,6 +20,7 @@ const SpectatorView: React.FC<SpectatorViewProps> = ({ gameId }) => {
   const [game, setGame] = useState<OngoingGame | null>(null);
   const [player1, setPlayer1] = useState<User | null>(null);
   const [player2, setPlayer2] = useState<User | null>(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [latestAttempt, setLatestAttempt] = useState<Attempt | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -117,9 +118,10 @@ const SpectatorView: React.FC<SpectatorViewProps> = ({ gameId }) => {
   };
 
   const renderStackedCards = (player: User, activeCardId: string | null, alignRight: boolean) => {
-    const visiblePortion = 80;
+    const visiblePortion = 70;
     const stackSize = 4;
     
+    // Filter out the active card and take up to 4 inactive cards
     const inactiveCards = player.members
       .filter(member => member.id !== activeCardId)
       .slice(0, stackSize);
@@ -132,11 +134,15 @@ const SpectatorView: React.FC<SpectatorViewProps> = ({ gameId }) => {
         {inactiveCards.map((member, index) => (
           <div 
             key={member.id}
-            className={`absolute transition-all duration-300 ease-in-out ${alignRight ? 'right-0' : 'left-0'}`}
+            className={`absolute ${alignRight ? 'right-0' : 'left-0'}`}
             style={{ 
               top: `${index * visiblePortion}px`,
-              zIndex: index,
+              zIndex: hoveredCard === member.id ? 10 : index,
+              transform: hoveredCard === member.id ? 'scale(1.1) translateY(-10px)' : 'scale(1) translateY(0)',
+              transition: 'all 0.1s ease-out', // Faster transition
             }}
+            onMouseEnter={() => setHoveredCard(member.id)}
+            onMouseLeave={() => setHoveredCard(null)}
           >
             <PlayerCard 
               player={member} 
