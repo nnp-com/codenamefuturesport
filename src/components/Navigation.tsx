@@ -14,6 +14,8 @@ const Navbar: React.FC = () => {
     const { user, isAdmin, signOut } = useAuthStore();
     const [isInChampionship, setIsInChampionship] = useState(false);
 
+    const isTeamSelectionPage = pathname === '/team-selection';
+
     useEffect(() => {
         const checkOngoingChampionship = async () => {
             if (user) {
@@ -43,34 +45,40 @@ const Navbar: React.FC = () => {
                 <div className="flex justify-between h-16">
                     <div className="flex">
                         <div className="flex-shrink-0 flex items-center">
-                            <Link href="/" className="text-xl font-bold text-gray-800">
-                                CD : FS
-                            </Link>
+                            {isTeamSelectionPage ? (
+                                <span className="text-xl font-bold text-gray-800">CD : FS</span>
+                            ) : (
+                                <Link href="/" className="text-xl font-bold text-gray-800">
+                                    CD : FS
+                                </Link>
+                            )}
                         </div>
-                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            <Link
-                                href="/"
-                                className={`${
-                                    pathname === '/lockerroom'
-                                        ? 'border-indigo-500 text-gray-900'
-                                        : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                                } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
-                            >
-                                Locker Room
-                            </Link>
-                            {isInChampionship && (
+                        {!isTeamSelectionPage && (
+                            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                                 <Link
-                                    href="/hub"
+                                    href="/"
                                     className={`${
-                                        pathname === '/hub'
+                                        pathname === '/lockerroom'
                                             ? 'border-indigo-500 text-gray-900'
                                             : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                                     } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                                 >
-                                    Championship HUB
+                                    Locker Room
                                 </Link>
-                            )}
-                        </div>
+                                {isInChampionship && (
+                                    <Link
+                                        href="/hub"
+                                        className={`${
+                                            pathname === '/hub'
+                                                ? 'border-indigo-500 text-gray-900'
+                                                : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                                        } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                                    >
+                                        Championship HUB
+                                    </Link>
+                                )}
+                            </div>
+                        )}
                     </div>
                     <div className="hidden sm:ml-6 sm:flex sm:items-center">
                         {user && (

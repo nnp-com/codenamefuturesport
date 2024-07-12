@@ -1,36 +1,85 @@
 import React from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 
 interface ConfirmationModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
+  onCancel?: () => void;
   message: string;
+  confirmText?: string;
+  cancelText?: string;
 }
 
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ isOpen, onClose, onConfirm, message }) => {
-  if (!isOpen) return null;
-
+const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  onCancel,
+  message,
+  confirmText = 'Confirm',
+  cancelText = 'Cancel',
+}) => {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-xl">
-        <h2 className="text-xl font-bold mb-4">Confirmation</h2>
-        <p className="mb-6">{message}</p>
-        <div className="flex justify-end space-x-4">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+    <Transition show={isOpen} as={React.Fragment}>
+      <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={onClose}>
+        <div className="min-h-screen px-4 text-center">
+          <Transition.Child
+            as={React.Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            Cancel
-          </button>
-          <button
-            onClick={onConfirm}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            <div className="fixed inset-0 bg-black bg-opacity-30" aria-hidden="true" />
+          </Transition.Child>
+
+          <span className="inline-block h-screen align-middle" aria-hidden="true">
+            &#8203;
+          </span>
+          
+          <Transition.Child
+            as={React.Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
           >
-            Confirm
-          </button>
+            <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                Confirmation
+              </Dialog.Title>
+              <div className="mt-2">
+                <p className="text-sm text-gray-500">{message}</p>
+              </div>
+
+              <div className="mt-4 flex justify-end space-x-2">
+                {onCancel && (
+                  <button
+                    type="button"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={onCancel}
+                  >
+                    {cancelText}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                  onClick={onConfirm}
+                >
+                  {confirmText}
+                </button>
+              </div>
+            </div>
+          </Transition.Child>
         </div>
-      </div>
-    </div>
+      </Dialog>
+    </Transition>
   );
 };
 

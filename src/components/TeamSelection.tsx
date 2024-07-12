@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Listbox } from '@headlessui/react';
 import { useRouter } from 'next/navigation';
+import { ChevronDownIcon, CheckIcon } from '@heroicons/react/20/solid';
 import useTeamSelectionStore from '../stores/TeamSelectionStore';
 import PlayerCard from './ui/playercard';
 import { SPORTS } from '../constants';
@@ -38,6 +39,8 @@ const TeamSelectionScreen: React.FC = () => {
   const router = useRouter();
 
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isBackModalOpen, setIsBackModalOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const handleRemoveAllPlayers = () => {
     setIsConfirmModalOpen(true);
@@ -49,7 +52,22 @@ const TeamSelectionScreen: React.FC = () => {
   };
 
   const handleBack = () => {
-    router.push('/lockerroom');
+    if (teamMembers.length === 5) {
+      router.push('/lockerroom');
+    } else {
+      setIsBackModalOpen(true);
+    }
+  };
+
+  const handleLeaveWithoutTeam = async () => {
+    setIsNavigating(true);
+    await removeAllPlayers();
+    navigateToLockerRoom();
+  };
+
+  const navigateToLockerRoom = () => {
+    setIsNavigating(true);
+    router.push('/lockerroom?reload=true');
   };
 
   useEffect(() => {
@@ -90,6 +108,21 @@ const TeamSelectionScreen: React.FC = () => {
     loadUserTeam();
   }, [loadUserTeam, setAllPlayers]);
 
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (teamMembers.length !== 5) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [teamMembers]);
+
   const filteredPlayers = allPlayers.filter(
     (player) => player.sport === selectedSport && player.starTier === selectedStarTier
   );
@@ -102,7 +135,9 @@ const TeamSelectionScreen: React.FC = () => {
       <div className="flex justify-between items-start mb-4">
         <button
           onClick={handleBack}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          className={`px-4 py-2 text-white rounded transition-colors ${
+            teamMembers.length === 5 ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-400 hover:bg-gray-500'
+          }`}
         >
           ← Back to Locker Room
         </button>
@@ -120,6 +155,14 @@ const TeamSelectionScreen: React.FC = () => {
         </div>
       </div>
 
+      <p className="text-center text-lg mb-4">
+        You must pick a team of five players to proceed. Select your team members carefully to balance offense and defense.
+      </p>
+
+      <p className="text-center text-lg mb-4">
+        Current team size: {teamMembers.length}/5
+      </p>
+
       <div className="flex flex-wrap justify-center mb-4">
         {[1, 2, 3, 4, 5].map((position) => (
           <PlayerCard
@@ -132,66 +175,100 @@ const TeamSelectionScreen: React.FC = () => {
       </div>
 
       <div className="flex justify-center mb-4">
-  <button
-    onClick={fillRandomPosition}
-    className="mr-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-  >
-    Fill Random Position
-  </button>
-  <button
-    onClick={handleRemoveAllPlayers}
-    className="ml-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-  >
-    Remove All Players
-  </button>
-</div>
+        <button
+          onClick={fillRandomPosition}
+          className="mr-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+        >
+          Fill Random Position
+        </button>
+        <button
+          onClick={handleRemoveAllPlayers}
+          className="ml-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+          Remove All Players
+        </button>
+      </div>
 
-<div className="mb-4 flex justify-center items-center">
-  <span className="mr-2 font-bold">Pick a sport</span>
-  <Listbox value={selectedSport} onChange={setSelectedSport}>
-    <div className="relative mr-4">
-      <Listbox.Button className="p-2 border rounded">
-        {selectedSport}
-      </Listbox.Button>
-      <Listbox.Options className="absolute mt-1 w-56 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-        {["Basketball", "Baseball", "Soccer"].map((sport) => (
-          <Listbox.Option
-            key={sport}
-            value={sport}
-            className={({ active }) =>
-              `${active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'}
-              cursor-default select-none relative py-2 pl-10 pr-4`
-            }
-          >
-            {sport}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
-    </div>
-  </Listbox>
+      <div className="flex justify-center items-center mb-4 space-x-4">
+  <div className="relative">
+    <span className="block mb-2 font-bold">Pick a sport</span>
+    <Listbox value={selectedSport} onChange={setSelectedSport}>
+      <div className="relative">
+        <Listbox.Button className="relative w-40 py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-lg shadow-sm cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-blue-500 sm:text-sm">
+          <span className="block truncate">{selectedSport}</span>
+          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+            <ChevronDownIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
+          </span>
+        </Listbox.Button>
+        <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          {["Basketball", "Baseball", "Soccer"].map((sport) => (
+            <Listbox.Option
+              key={sport}
+              value={sport}
+              className={({ active, selected }) =>
+                `${active ? 'text-white bg-blue-600' : 'text-gray-900'}
+                ${selected ? 'bg-blue-100' : ''}
+                cursor-default select-none relative py-2 pl-10 pr-4`
+              }
+            >
+              {({ selected, active }) => (
+                <>
+                  <span className={`${selected ? 'font-medium' : 'font-normal'} block truncate`}>
+                    {sport}
+                  </span>
+                  {selected && (
+                    <span className={`${active ? 'text-white' : 'text-blue-600'} absolute inset-y-0 left-0 flex items-center pl-3`}>
+                      <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                    </span>
+                  )}
+                </>
+              )}
+            </Listbox.Option>
+          ))}
+        </Listbox.Options>
+      </div>
+    </Listbox>
+  </div>
 
-  <span className="mr-2 font-bold">... and a star ranking</span>
-  <Listbox value={selectedStarTier} onChange={setSelectedStarTier}>
-    <div className="relative">
-      <Listbox.Button className="p-2 border rounded">
-        {selectedStarTier} Star
-      </Listbox.Button>
-      <Listbox.Options className="absolute mt-1 w-56 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-        {[1, 2, 3, 4, 5].map((tier) => (
-          <Listbox.Option
-            key={tier}
-            value={tier}
-            className={({ active }) =>
-              `${active ? 'text-amber-900 bg-amber-100' : 'text-gray-900'}
-              cursor-default select-none relative py-2 pl-10 pr-4`
-            }
-          >
-            {tier} Star
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
-    </div>
-  </Listbox>
+  <div className="relative">
+    <span className="block mb-2 font-bold">Star ranking</span>
+    <Listbox value={selectedStarTier} onChange={setSelectedStarTier}>
+      <div className="relative">
+        <Listbox.Button className="relative w-40 py-2 pl-3 pr-10 text-left bg-white border border-gray-300 rounded-lg shadow-sm cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-blue-500 sm:text-sm">
+          <span className="block truncate">{selectedStarTier} Star</span>
+          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+            <ChevronDownIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
+          </span>
+        </Listbox.Button>
+        <Listbox.Options className="absolute z-10 w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          {[1, 2, 3, 4, 5].map((tier) => (
+            <Listbox.Option
+              key={tier}
+              value={tier}
+              className={({ active, selected }) =>
+                `${active ? 'text-white bg-blue-600' : 'text-gray-900'}
+                ${selected ? 'bg-blue-100' : ''}
+                cursor-default select-none relative py-2 pl-10 pr-4`
+              }
+            >
+              {({ selected, active }) => (
+                <>
+                  <span className={`${selected ? 'font-medium' : 'font-normal'} block truncate`}>
+                    {tier} Star
+                  </span>
+                  {selected && (
+                    <span className={`${active ? 'text-white' : 'text-blue-600'} absolute inset-y-0 left-0 flex items-center pl-3`}>
+                      <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                    </span>
+                  )}
+                </>
+              )}
+            </Listbox.Option>
+          ))}
+        </Listbox.Options>
+      </div>
+    </Listbox>
+  </div>
 </div>
 
       {loading ? (
@@ -235,11 +312,21 @@ const TeamSelectionScreen: React.FC = () => {
         </div>
       )}
 
-      <ConfirmationModal
+<ConfirmationModal
         isOpen={isConfirmModalOpen}
         onClose={() => setIsConfirmModalOpen(false)}
         onConfirm={confirmRemoveAllPlayers}
         message="Are you sure you want to remove all players from your team?"
+      />
+
+      <ConfirmationModal
+        isOpen={isBackModalOpen}
+        onClose={() => setIsBackModalOpen(false)}
+        onConfirm={handleLeaveWithoutTeam}
+        onCancel={() => setIsBackModalOpen(false)}
+        message="You haven't selected five players yet. Do you want to leave without picking a Team yet?"
+        confirmText="Leave without a team"
+        cancelText="Continue team picks"
       />
     </div>
   );
